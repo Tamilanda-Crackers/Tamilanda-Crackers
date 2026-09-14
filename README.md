@@ -19,9 +19,9 @@ A premium Diwali crackers shopping website with an AI-powered product recommenda
 
 ## 🤖 AI Assistant
 
-The website uses **Puter.js AI** with a DeepSeek model directly from the browser.
+The website supports both client-side **Puter.js AI** (DeepSeek) and server-side **Google Gemini AI** for smart recommendations.
 
-No OpenAI API key is required by this project.
+No complex setup is required to run locally.
 
 The AI assistant can understand requests such as:
 
@@ -40,7 +40,23 @@ Customers can add products to the cart and place their order through WhatsApp.
 
 ## 🚀 Run Locally
 
-Install dependencies:
+1. Install dependencies:
 
 ```bash
 npm install
+```
+
+2. (Optional) Set up environment variables in `.env`:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+PORT=3000
+```
+
+3. Start the application server:
+
+```bash
+npm start
+```
+
+4. Open `http://localhost:3000` in your browser.

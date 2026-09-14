@@ -21,6 +21,11 @@
 
     <title>Tamilanda Crackers | Light Up The Night</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <!-- Main Website CSS -->
     <link rel="stylesheet" href="style.css">
 
@@ -47,6 +52,15 @@
         <div class="firework firework-3"></div>
         <div class="firework firework-4"></div>
 
+    </div>
+
+
+    <!-- =========================================================
+         MINIMUM ORDER VALUE BANNER
+    ========================================================== -->
+
+    <div class="min-order-banner">
+        <span>⚡ <strong>MINIMUM ORDER VALUE: ₹2,500</strong> — Direct Sivakasi Wholesale Prices! 🚚</span>
     </div>
 
 
@@ -124,9 +138,41 @@
                 type="button"
                 id="mobileMenuButton"
                 class="mobile-menu-button"
-                aria-label="Open menu"
+                aria-label="Open navigation menu"
             >
                 ☰
+            </button>
+
+        </div>
+
+
+        <div
+            id="mobileNav"
+            class="mobile-nav"
+        >
+
+            <a href="#home">
+                🏠 Home
+            </a>
+
+            <a href="#products">
+                🧨 Crackers
+            </a>
+
+
+            <button
+                type="button"
+                id="openAiFromMobile"
+            >
+                ✨ AI Select
+            </button>
+
+
+            <button
+                type="button"
+                id="openCartFromMobile"
+            >
+                🛒 Shopping Cart
             </button>
 
         </div>
@@ -135,39 +181,7 @@
 
 
     <!-- =========================================================
-         MOBILE NAV
-    ========================================================== -->
-
-    <div
-        id="mobileNav"
-        class="mobile-nav"
-    >
-
-        <button
-            type="button"
-            id="openAiFromMobile"
-        >
-            ✨ AI SELECT
-        </button>
-
-
-        <a href="#products">
-            🧨 CRACKERS
-        </a>
-
-
-        <button
-            type="button"
-            id="openCartFromMobile"
-        >
-            🛒 CART
-        </button>
-
-    </div>
-
-
-    <!-- =========================================================
-         HERO
+         HERO SECTION
     ========================================================== -->
 
     <main id="home">
@@ -177,7 +191,7 @@
             <div class="hero-content">
 
                 <div class="hero-eyebrow">
-                    DIWALI 2026 • SIVAKASI
+                    SIVAKASI WHOLESALE CRACKERS 2026
                 </div>
 
 
@@ -194,30 +208,29 @@
 
                 <p class="hero-description">
 
-                    Premium crackers at customer-friendly prices.
-                    Build your perfect Diwali selection with our
-                    smart AI shopping assistant.
+                    Direct Sivakasi factory pricing with premium quality,
+                    complete safety testing, and fast WhatsApp ordering.
+                    Choose your own collection or let AI build your Diwali mix.
 
                 </p>
 
 
                 <div class="hero-actions">
 
+                    <a
+                        href="#products"
+                        class="primary-button"
+                    >
+                        EXPLORE CRACKERS ↓
+                    </a>
+
+
                     <button
                         type="button"
                         id="heroAiButton"
-                        class="primary-button"
-                    >
-                        ✨ BUILD MY SELECTION
-                    </button>
-
-
-                    <button
-                        type="button"
-                        id="heroAiPreviewButton"
                         class="secondary-button"
                     >
-                        SEE HOW IT WORKS
+                        ✨ AI SMART SELECT
                     </button>
 
                 </div>
@@ -228,11 +241,11 @@
                     <div class="hero-stat">
 
                         <strong id="heroProductCount">
-                            263+
+                            260+
                         </strong>
 
                         <span>
-                            PRODUCTS
+                            Products
                         </span>
 
                     </div>
@@ -241,11 +254,11 @@
                     <div class="hero-stat">
 
                         <strong>
-                            2026
+                            80%
                         </strong>
 
                         <span>
-                            DIWALI
+                            Off Offer
                         </span>
 
                     </div>
@@ -254,11 +267,11 @@
                     <div class="hero-stat">
 
                         <strong>
-                            ₹
+                            100%
                         </strong>
 
                         <span>
-                            BEST PRICE
+                            Sivakasi Quality
                         </span>
 
                     </div>
@@ -268,9 +281,7 @@
             </div>
 
 
-            <!-- =================================================
-                 HERO AI CARD
-            ================================================== -->
+            <!-- HERO AI CARD -->
 
             <div class="hero-ai-card">
 
@@ -283,16 +294,16 @@
 
 
                 <div class="ai-card-label">
-                    TAMILANDA AI
+                    TAMILANDA AI ASSISTANT
                 </div>
 
 
                 <h2>
 
-                    Tell us what
+                    BUILD YOUR
 
                     <span>
-                        you want.
+                        DIWALI MIX
                     </span>
 
                 </h2>
@@ -300,8 +311,9 @@
 
                 <p>
 
-                    Budget, family size, sound level,
-                    colour, variety — just tell us naturally.
+                    Tell us your budget and preferences.
+                    Our AI will select the best combination of
+                    sound, colour, sparklers, and sky shots.
 
                 </p>
 
@@ -309,11 +321,11 @@
                 <div class="ai-example">
 
                     <span>
-                        Try:
+                        Example Request:
                     </span>
 
                     <strong>
-                        “₹2000 family ku balanced selection venum”
+                        "₹2000 family ku balanced selection venum"
                     </strong>
 
                 </div>
@@ -321,10 +333,10 @@
 
                 <button
                     type="button"
-                    id="aiCtaButton"
+                    id="heroAiPreviewButton"
                     class="ai-card-button"
                 >
-                    ASK AI →
+                    ✨ BUILD WITH AI →
                 </button>
 
             </div>
@@ -332,9 +344,9 @@
         </section>
 
 
-        <!-- =====================================================
+        <!-- =========================================================
              PRODUCTS SECTION
-        ====================================================== -->
+        ========================================================== -->
 
         <section
             id="products"
@@ -346,7 +358,7 @@
                 <div>
 
                     <div class="section-eyebrow">
-                        SHOP THE COLLECTION
+                        CATALOGUE
                     </div>
 
 
@@ -374,9 +386,7 @@
             </div>
 
 
-            <!-- =================================================
-                 SEARCH + SORT
-            ================================================== -->
+            <!-- CONTROLS -->
 
             <div class="product-controls">
 
@@ -393,6 +403,7 @@
                         class="search-input"
                         placeholder="Search crackers, rockets, fountains..."
                         autocomplete="off"
+                        aria-label="Search crackers, rockets, fountains"
                     >
 
 
@@ -411,6 +422,7 @@
                 <select
                     id="sortSelect"
                     class="sort-select"
+                    aria-label="Sort products"
                 >
 
                     <option value="recommended">
@@ -444,10 +456,6 @@
             ></div>
 
 
-            <!-- =================================================
-                 PRODUCT RESULT INFO
-            ================================================== -->
-
             <div class="products-topbar">
 
                 <span id="resultCount">
@@ -466,19 +474,17 @@
             </div>
 
 
-            <!-- =================================================
-                 PRODUCT GRID
-            ================================================== -->
+            <!-- PRODUCT GRID -->
 
             <div
                 id="productGrid"
                 class="product-grid"
-            ></div>
+            >
+                <div class="loading-state">Loading products...</div>
+            </div>
 
 
-            <!-- =================================================
-                 EMPTY PRODUCTS
-            ================================================== -->
+            <!-- EMPTY STATE -->
 
             <div
                 id="emptyProducts"
@@ -487,17 +493,17 @@
             >
 
                 <div class="empty-icon">
-                    🔎
+                    🧨
                 </div>
 
 
                 <h3>
-                    No Crackers Found
+                    No products found
                 </h3>
 
 
                 <p>
-                    Try another search or reset the filters.
+                    Try searching for another term or reset your filters.
                 </p>
 
 
@@ -506,7 +512,7 @@
                     id="emptyResetButton"
                     class="primary-button"
                 >
-                    RESET FILTERS
+                    RESET ALL FILTERS
                 </button>
 
             </div>
@@ -514,9 +520,9 @@
         </section>
 
 
-        <!-- =====================================================
-             AI CTA SECTION
-        ====================================================== -->
+        <!-- =========================================================
+             AI BOTTOM BANNER
+        ========================================================== -->
 
         <section class="ai-bottom-section">
 
@@ -578,7 +584,7 @@
         aria-hidden="true"
     >
 
-        <aside
+        <div
             class="cart-drawer"
             role="dialog"
             aria-modal="true"
@@ -634,6 +640,8 @@
 
             <div class="cart-footer">
 
+                <div id="minOrderNotice" class="min-order-cart-notice"></div>
+
                 <div class="cart-total-row">
 
                     <span>
@@ -652,32 +660,23 @@
                     id="whatsappOrderButton"
                     class="whatsapp-order-button"
                 >
-
-                    <span>
-                        💬
-                    </span>
-
-                    ORDER ON WHATSAPP
-
+                    💬 ORDER ON WHATSAPP
                 </button>
 
 
                 <p class="cart-note">
-
-                    Your order will open in WhatsApp
-                    with the selected products and quantities.
-
+                    WhatsApp-la order details verify panni final bill confirmation varum.
                 </p>
 
             </div>
 
-        </aside>
+        </div>
 
     </div>
 
 
     <!-- =========================================================
-         AI MODAL
+         AI MODAL OVERLAY
     ========================================================== -->
 
     <div
@@ -686,14 +685,14 @@
         aria-hidden="true"
     >
 
-        <section
+        <div
             class="ai-modal"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="aiModalTitle"
+            aria-label="AI SELECT Assistant"
         >
 
-            <!-- AI HEADER -->
+            <!-- AI MODAL HEADER -->
 
             <div class="ai-modal-header">
 
@@ -738,149 +737,157 @@
             </div>
 
 
-            <!-- AI INTRO -->
+            <!-- DYNAMIC SCREEN CONTAINER -->
+            <div id="aiScreenContainer" class="ai-screen-container">
 
-            <div class="ai-intro">
-
-                <p>
-
-                    Tell me what you're looking for.
-                    You can type in <strong>Tanglish</strong>,
-                    Tamil or English.
-
-                </p>
-
-
-                <div class="ai-example-pills">
-
-                    <button
-                        type="button"
-                        class="ai-example-pill"
-                        data-prompt="₹1000 budget la family ku balanced selection venum"
-                    >
-                        ₹1000 • Family
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="ai-example-pill"
-                        data-prompt="₹2000 family ku balanced selection venum, sound kammi"
-                    >
-                        ₹2000 • Sound Kammi
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="ai-example-pill"
-                        data-prompt="Kids ku colourful items neraya venum"
-                    >
-                        Kids • Colourful
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- AI CHAT -->
-
-            <div
-                id="aiChat"
-                class="ai-chat"
-            >
-
-                <div class="ai-welcome-message">
-
-                    <div class="chat-avatar">
-                        ✨
+                <!-- SCREEN 1: NEW OPENING SCREEN -->
+                <div id="aiOpeningScreen" class="ai-screen active">
+                    <div class="ai-min-budget-notice">
+                        ⚡ <strong>Minimum AI Selection: ₹2,500</strong>
                     </div>
 
+                    <div class="ai-opening-grid">
+                        <button type="button" class="ai-combo-card" data-mode="children2500">
+                            <span class="combo-icon">👦</span>
+                            <span class="combo-info">
+                                <strong>₹2,500 Children Combo</strong>
+                                <small>Child-friendly sparklers, fountains & novelty items</small>
+                            </span>
+                        </button>
 
-                    <div class="chat-bubble">
+                        <button type="button" class="ai-combo-card" data-mode="adult2500">
+                            <span class="combo-icon">👨</span>
+                            <span class="combo-info">
+                                <strong>₹2,500 Adult Combo</strong>
+                                <small>Sound crackers, bombs, rockets & multishots</small>
+                            </span>
+                        </button>
 
-                        <strong>
-                            Hi! 👋
-                        </strong>
+                        <button type="button" class="ai-combo-card" data-mode="family2500">
+                            <span class="combo-icon">👨‍👩‍👧‍👦</span>
+                            <span class="combo-info">
+                                <strong>₹2,500 Family Combo</strong>
+                                <small>Balanced celebration mix for everyone at home</small>
+                            </span>
+                        </button>
 
+                        <button type="button" class="ai-combo-card" data-mode="allinone2500">
+                            <span class="combo-icon">🎆</span>
+                            <span class="combo-info">
+                                <strong>₹2,500 All in One Mixed Combo</strong>
+                                <small>Complete variety mix across all store categories</small>
+                            </span>
+                        </button>
 
-                        <p>
+                        <button type="button" class="ai-action-card" id="btnTellBudget">
+                            <span class="combo-icon">💰</span>
+                            <span class="combo-info">
+                                <strong>Tell Your Budget</strong>
+                                <small>Specify custom budget starting at ₹2,500</small>
+                            </span>
+                        </button>
 
-                            Ungaloda budget and preference
-                            sollunga. Naan suitable crackers
-                            selection build pannuren.
-
-                        </p>
-
+                        <button type="button" class="ai-action-card" id="btnChooseManually">
+                            <span class="combo-icon">✋</span>
+                            <span class="combo-info">
+                                <strong>Choose Manually</strong>
+                                <small>Set custom budget & split category allocations manually</small>
+                            </span>
+                        </button>
                     </div>
-
                 </div>
 
-            </div>
+                <!-- SCREEN 2: BUDGET SELECTION SCREEN -->
+                <div id="aiBudgetScreen" class="ai-screen" style="display: none;">
+                    <div class="ai-screen-header">
+                        <button type="button" class="ai-back-button" id="btnBackToOpening">← Back</button>
+                        <h3>💰 What's your budget?</h3>
+                        <small>Minimum allowed budget is ₹2,500</small>
+                    </div>
 
+                    <div class="ai-budget-pills">
+                        <button type="button" class="ai-budget-pill" data-budget="2500">₹2,500</button>
+                        <button type="button" class="ai-budget-pill" data-budget="3000">₹3,000</button>
+                        <button type="button" class="ai-budget-pill" data-budget="4000">₹4,000</button>
+                        <button type="button" class="ai-budget-pill" data-budget="5000">₹5,000</button>
+                        <button type="button" class="ai-budget-pill" data-budget="7500">₹7,500</button>
+                        <button type="button" class="ai-budget-pill" data-budget="10000">₹10,000</button>
+                    </div>
 
-            <!-- AI QUICK PROMPTS -->
+                    <div class="ai-custom-budget-row">
+                        <label for="customBudgetInput">Custom Budget (₹):</label>
+                        <input type="number" id="customBudgetInput" min="2500" step="100" placeholder="e.g. 3500">
+                        <button type="button" id="btnApplyCustomBudget" class="primary-button">PROCEED →</button>
+                    </div>
+                </div>
 
-            <div
-                id="aiQuickPrompts"
-                class="ai-quick-prompts"
-            >
+                <!-- SCREEN 3: BUDGET ALLOCATION SCREEN -->
+                <div id="aiAllocationScreen" class="ai-screen" style="display: none;">
+                    <div class="ai-screen-header">
+                        <button type="button" class="ai-back-button" id="btnBackToBudget">← Back</button>
+                        <h3 id="allocationHeaderTitle">🎯 How do you want to split your ₹5,000 budget?</h3>
+                    </div>
 
-                <button
-                    type="button"
-                    data-prompt="₹500 budget la best selection"
-                >
-                    ₹500 Best
-                </button>
+                    <div class="ai-budget-summary-bar">
+                        <div class="summary-item"><span>Budget</span><strong id="allocTotalBudget">₹5,000</strong></div>
+                        <div class="summary-item"><span>Allocated</span><strong id="allocTotalSpent">₹0</strong></div>
+                        <div class="summary-item"><span id="allocRemLabel">Remaining</span><strong id="allocTotalRemaining">₹5,000</strong></div>
+                    </div>
 
+                    <div class="ai-allocation-categories">
+                        <div class="alloc-row">
+                            <span class="alloc-label">✨ Colour & Visual</span>
+                            <div class="alloc-input-wrap"><span>₹</span><input type="number" class="alloc-input" data-cat="colour" min="0" step="50" value="0" aria-label="Colour & Visual budget allocation"></div>
+                        </div>
+                        <div class="alloc-row">
+                            <span class="alloc-label">🔥 Sound</span>
+                            <div class="alloc-input-wrap"><span>₹</span><input type="number" class="alloc-input" data-cat="sound" min="0" step="50" value="0" aria-label="Sound budget allocation"></div>
+                        </div>
+                        <div class="alloc-row">
+                            <span class="alloc-label">🚀 Rockets</span>
+                            <div class="alloc-input-wrap"><span>₹</span><input type="number" class="alloc-input" data-cat="rockets" min="0" step="50" value="0" aria-label="Rockets budget allocation"></div>
+                        </div>
+                        <div class="alloc-row">
+                            <span class="alloc-label">🌸 Fountains</span>
+                            <div class="alloc-input-wrap"><span>₹</span><input type="number" class="alloc-input" data-cat="fountains" min="0" step="50" value="0" aria-label="Fountains budget allocation"></div>
+                        </div>
+                        <div class="alloc-row">
+                            <span class="alloc-label">🧨 Sparklers</span>
+                            <div class="alloc-input-wrap"><span>₹</span><input type="number" class="alloc-input" data-cat="sparklers" min="0" step="50" value="0" aria-label="Sparklers budget allocation"></div>
+                        </div>
+                        <div class="alloc-row">
+                            <span class="alloc-label">🎇 Multi-Effect</span>
+                            <div class="alloc-input-wrap"><span>₹</span><input type="number" class="alloc-input" data-cat="multieffect" min="0" step="50" value="0" aria-label="Multi-Effect budget allocation"></div>
+                        </div>
+                        <div class="alloc-row">
+                            <span class="alloc-label">🎉 Variety Mix</span>
+                            <div class="alloc-input-wrap"><span>₹</span><input type="number" class="alloc-input" data-cat="variety" min="0" step="50" value="0" aria-label="Variety Mix budget allocation"></div>
+                        </div>
+                    </div>
 
-                <button
-                    type="button"
-                    data-prompt="₹1000 family selection"
-                >
-                    ₹1000 Family
-                </button>
+                    <div class="ai-allocation-actions">
+                        <button type="button" id="btnAutoBalance" class="secondary-button">✨ AUTO BALANCE REMAINING</button>
+                        <button type="button" id="btnCreateMySelection" class="primary-button" disabled>✨ CREATE MY SELECTION</button>
+                    </div>
+                </div>
 
+                <!-- SCREEN 4: CHAT & RESULT SCREEN -->
+                <div id="aiResultScreen" class="ai-screen" style="display: none;">
+                    <div id="aiChat" class="ai-chat">
+                        <div class="ai-welcome-message">
+                            <div class="chat-avatar">✨</div>
+                            <div class="chat-bubble">
+                                <strong>Hi! 👋</strong>
+                                <p>Ungaloda preference or follow-up change sollunga. Naan selection update pannuren.</p>
+                            </div>
+                        </div>
+                    </div>
 
-                <button
-                    type="button"
-                    data-prompt="₹2000 balanced selection"
-                >
-                    ₹2000 Balanced
-                </button>
-
-
-                <button
-                    type="button"
-                    data-prompt="Colour items neraya venum"
-                >
-                    Colourful
-                </button>
-
-            </div>
-
-
-            <!-- AI INPUT -->
-
-            <div class="ai-input-area">
-
-                <textarea
-                    id="aiInput"
-                    rows="1"
-                    placeholder="Example: ₹2000 family ku balanced venum..."
-                    autocomplete="off"
-                ></textarea>
-
-
-                <button
-                    type="button"
-                    id="aiSendButton"
-                    class="ai-send-button"
-                    aria-label="Send message"
-                >
-                    ➤
-                </button>
+                    <div class="ai-input-area">
+                        <textarea id="aiInput" rows="1" placeholder="Type a follow-up request (e.g. sound kammi, change)..." autocomplete="off" aria-label="Ask AI Assistant"></textarea>
+                        <button type="button" id="aiSendButton" class="ai-send-button" aria-label="Send message">➤</button>
+                    </div>
+                </div>
 
             </div>
 
@@ -892,7 +899,7 @@
 
             </div>
 
-        </section>
+        </div>
 
     </div>
 

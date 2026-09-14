@@ -1,88 +1,189 @@
 /* =========================================================
    TAMILANDA CRACKERS
-   Product Catalogue Loader
+   Product Catalogue Loader (Synchronous + API/Static Refresh)
    ========================================================= */
 
 (function () {
   "use strict";
 
-  window.TAMILANDA_PRODUCTS = [];
-  window.TAMILANDA_PRODUCTS_READY = false;
+  var DEFAULT_CATALOGUE = [
+    {"id":1,"name":"2.75″ Kuruvi","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"5Pcs/1 Pkt Online Crackers 2026 Online Crackers Pricelist 2026","buy":5.5,"mrp":27.5,"price":10,"profit":4.5,"margin":45,"tags":["diwali","family","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250802_131918072-scaled.jpg","savings":17.5,"discount":63.6,"audience":["adults","everyone","family"]},
+    {"id":2,"name":"3.5″ Lakshmi","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"5Pcs/1Pkt Online Crackers Shopping online crackers sivakasi 2026","buy":12,"mrp":60,"price":15,"profit":3,"margin":20,"tags":["diwali","family","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250505_113724040-scaled.jpg","savings":45,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":3,"name":"4″ Lakshmi","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"5Pcs/1Pkt","buy":15,"mrp":75,"price":20,"profit":5,"margin":25,"tags":["diwali","family","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250505_113724040-scaled.jpg","savings":55,"discount":73.3,"audience":["adults","everyone","family"]},
+    {"id":4,"name":"Gold Lakshmi","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"5Pcs/1Pkt","buy":25,"mrp":125,"price":35,"profit":10,"margin":28.57142857142857,"tags":["diwali","family","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250505_113540099-scaled.jpg","savings":90,"discount":72,"audience":["adults","everyone","family"]},
+    {"id":5,"name":"2 Sound Crackers","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"5Pcs/1 Pkt Online crackers","buy":30,"mrp":150,"price":40,"profit":10,"margin":25,"tags":["diwali","family","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA000121.jpg","savings":110,"discount":73.3,"audience":["adults","everyone","family"]},
+    {"id":6,"name":"4 inch Deluxe Spider","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"5Pcs/1Pkt Best Crackers shop in sivakasi","buy":33,"mrp":165,"price":45,"profit":12,"margin":26.666666666666668,"tags":["diwali","family","premium","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00161.jpg","savings":120,"discount":72.7,"audience":["adults","everyone","family"]},
+    {"id":7,"name":"Kumki 4″","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"","buy":40,"mrp":200,"price":50,"profit":10,"margin":20,"tags":["diwali","family","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00281.jpg","savings":150,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":8,"name":"5″ lakshmi","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"","buy":45,"mrp":225,"price":60,"profit":15,"margin":25,"tags":["diwali","family","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00041.jpg","savings":165,"discount":73.3,"audience":["adults","everyone","family"]},
+    {"id":9,"name":"6″ Lakshmi","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"","buy":55,"mrp":275,"price":70,"profit":15,"margin":21.428571428571427,"tags":["diwali","family","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/IMG-20260616-WA00351.jpg","savings":205,"discount":74.5,"audience":["adults","everyone","family"]},
+    {"id":10,"name":"Shark Lion","category":"Crackers","sourceCategory":"ONE SOUND CRACKERS 80% OFFER","pack":"5Pcs/1Pkt","buy":70,"mrp":350,"price":90,"profit":20,"margin":22.22222222222222,"tags":["diwali","family","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/08/InShot_20260828_1300564991.jpg","savings":260,"discount":74.3,"audience":["adults","everyone","family"]},
+    {"id":11,"name":"7 CM Electric","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"10Pcs/1Box Sivakasi crackers pricelist","buy":10,"mrp":50,"price":10,"profit":0,"margin":0,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2025/10/InShot_20250621_125913593-scaled.jpg","savings":40,"discount":80,"audience":["adults","everyone","family"]},
+    {"id":12,"name":"7 CM Crackling","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"10Pcs/1Box Low price crackers in Sivakasi","buy":12,"mrp":60,"price":15,"profit":3,"margin":20,"tags":["colour","diwali","family","sound","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2025/10/InShot_20250621_131204376-scaled.jpg","savings":45,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":13,"name":"10 CM Electric","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"10Pcs/1Box","buy":13,"mrp":65,"price":20,"profit":7,"margin":35,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/WhatsApp-Image-2025-06-24-at-11.20.25-AM.jpeg","savings":45,"discount":69.2,"audience":["adults","everyone","family"]},
+    {"id":14,"name":"10 CM Crackling","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"10Pcs/1Box","buy":15,"mrp":75,"price":20,"profit":5,"margin":25,"tags":["colour","diwali","family","sound","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2025/10/InShot_20250618_095958443-scaled.jpg","savings":55,"discount":73.3,"audience":["adults","everyone","family"]},
+    {"id":15,"name":"15 CM Electic","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"10 Pcs/1Box","buy":29,"mrp":145,"price":40,"profit":11,"margin":27.5,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250624_010300.jpg","savings":105,"discount":72.4,"audience":["adults","everyone","family"]},
+    {"id":16,"name":"30 CM Electric","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"5 Pcs/1Box","buy":30,"mrp":150,"price":40,"profit":10,"margin":25,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250624_010346.jpg","savings":110,"discount":73.3,"audience":["adults","everyone","family"]},
+    {"id":17,"name":"15 CM Crackling","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"10Pcs/1Box","buy":35,"mrp":175,"price":45,"profit":10,"margin":22.22222222222222,"tags":["colour","diwali","family","sound","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250624_010442.jpg","savings":130,"discount":74.3,"audience":["adults","everyone","family"]},
+    {"id":18,"name":"30 CM Crackling","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"5Pcs/1Box","buy":35,"mrp":175,"price":45,"profit":10,"margin":22.22222222222222,"tags":["colour","diwali","family","sound","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250624_010717.jpg","savings":130,"discount":74.3,"audience":["adults","everyone","family"]},
+    {"id":19,"name":"15 CM Green","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"10Pcs/1Box","buy":40,"mrp":160,"price":50,"profit":10,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2025/10/InShot_20250618_100352652-scaled.jpg","savings":110,"discount":68.8,"audience":["adults","everyone","family"]},
+    {"id":20,"name":"15 CM Red","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"10Pcs/1Box","buy":40,"mrp":160,"price":50,"profit":10,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250624_011317.jpg","savings":110,"discount":68.8,"audience":["adults","everyone","family"]},
+    {"id":21,"name":"30 CM Green","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"5Pcs/1Box","buy":40,"mrp":160,"price":50,"profit":10,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/IMG-20260805-WA0012.jpg","savings":110,"discount":68.8,"audience":["adults","everyone","family"]},
+    {"id":22,"name":"30CM Red","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"5Pcs/1Box","buy":40,"mrp":160,"price":50,"profit":10,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/IMG-20260805-WA0011.jpg","savings":110,"discount":68.8,"audience":["adults","everyone","family"]},
+    {"id":23,"name":"10 Cm Orange","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"10Pcs/1Box","buy":40,"mrp":200,"price":50,"profit":10,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20251007_012110.jpg","savings":150,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":24,"name":"50 CM Electric","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"5Pcs/1Box","buy":160,"mrp":800,"price":200,"profit":40,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250624_011451.jpg","savings":600,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":25,"name":"50 CM Crackling","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"5Pcs/1Box","buy":170,"mrp":850,"price":215,"profit":45,"margin":20.930232558139537,"tags":["colour","diwali","family","sound","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250624_011451.jpg","savings":635,"discount":74.7,"audience":["adults","everyone","family"]},
+    {"id":26,"name":"Rotating Sparklers","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"1Pce/1Box","buy":180,"mrp":900,"price":225,"profit":45,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/WhatsApp-Image-2025-06-24-at-12.54.42-PM.jpeg","savings":675,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":27,"name":"50CM Mix Trix Asok","category":"Sparklers","sourceCategory":"SUDHARSHANS SPARKLERS","pack":"1Pce/1Box","buy":230,"mrp":1150,"price":290,"profit":60,"margin":20.689655172413797,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250708_171508543-scaled.jpg","savings":860,"discount":74.8,"audience":["adults","everyone","family"]},
+    {"id":28,"name":"12CM Twin Tone","category":"Sparklers","sourceCategory":"ASOK SPARKLERS","pack":"","buy":71,"mrp":355,"price":90,"profit":19,"margin":21.11111111111111,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250628_184432256.jpg","savings":265,"discount":74.6,"audience":["adults","everyone","family"]},
+    {"id":29,"name":"12CM Silver Drops","category":"Sparklers","sourceCategory":"ASOK SPARKLERS","pack":"","buy":75,"mrp":375,"price":95,"profit":20,"margin":21.052631578947366,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/InShot_20250628_190811905.jpg","savings":280,"discount":74.7,"audience":["adults","everyone","family"]},
+    {"id":30,"name":"10CM MULTI MIX Asok","category":"Sparklers","sourceCategory":"ASOK SPARKLERS","pack":"","buy":216,"mrp":1080,"price":270,"profit":54,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/InShot_20250628_185229064.jpg","savings":810,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":31,"name":"15CM Bouquet Bonanza Asok","category":"Sparklers","sourceCategory":"ASOK SPARKLERS","pack":"5Pcs/1Box","buy":580,"mrp":2900,"price":725,"profit":145,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250628_184957847.jpg","savings":2175,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":32,"name":"Flower Cone Big","category":"Flower Pots","sourceCategory":"FLOWER CONES","pack":"10Pcs/1Box online crackers sivakasi 2026","buy":60,"mrp":300,"price":75,"profit":15,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250624_011719.jpg","savings":225,"discount":75,"audience":["everyone","family"]},
+    {"id":33,"name":"Flower Cone Special","category":"Flower Pots","sourceCategory":"FLOWER CONES","pack":"10Pcs/1Box","buy":80,"mrp":400,"price":100,"profit":20,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2025/10/InShot_20250531_124514838-scaled.jpg","savings":300,"discount":75,"audience":["everyone","family"]},
+    {"id":34,"name":"Flower Cone Super Deluxe","category":"Flower Pots","sourceCategory":"FLOWER CONES","pack":"2Pcs/1Box Best Crackers shop in sivakasi","buy":90,"mrp":450,"price":115,"profit":25,"margin":21.73913043478261,"tags":["colour","diwali","family","premium","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20260903_125030297-scaled.jpg","savings":335,"discount":74.4,"audience":["everyone","family"]},
+    {"id":35,"name":"Flower Cone Asoka","category":"Flower Pots","sourceCategory":"FLOWER CONES","pack":"10Pcs/1Box Diwali Sivakasi Crackers","buy":130,"mrp":650,"price":165,"profit":35,"margin":21.21212121212121,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250624_011818.jpg","savings":485,"discount":74.6,"audience":["everyone","family"]},
+    {"id":36,"name":"Flower Cone Deluxe","category":"Flower Pots","sourceCategory":"FLOWER CONES","pack":"5Pcs/1Box top crackers","buy":145,"mrp":725,"price":185,"profit":40,"margin":21.62162162162162,"tags":["colour","diwali","family","premium","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20260903_125001797-scaled.jpg","savings":540,"discount":74.5,"audience":["everyone","family"]},
+    {"id":37,"name":"Ground Chakkar Big","category":"Ground Chakkar","sourceCategory":"GROUND CHAKKAR","pack":"10Pcs/1Box","buy":30,"mrp":150,"price":40,"profit":10,"margin":25,"tags":["colour","diwali","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00261.jpg","savings":110,"discount":73.3,"audience":["everyone","family"]},
+    {"id":38,"name":"Ground Chakkar Asoka","category":"Ground Chakkar","sourceCategory":"GROUND CHAKKAR","pack":"10Pcs/1Box","buy":40,"mrp":200,"price":50,"profit":10,"margin":20,"tags":["colour","diwali","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20260903_124643772-scaled.jpg","savings":150,"discount":75,"audience":["everyone","family"]},
+    {"id":39,"name":"Ground Chakkar Special","category":"Ground Chakkar","sourceCategory":"GROUND CHAKKAR","pack":"10Pcs/1Box Best Crackers shop in sivakasi","buy":65,"mrp":325,"price":85,"profit":20,"margin":23.52941176470588,"tags":["colour","diwali","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00221.jpg","savings":240,"discount":73.8,"audience":["everyone","family"]},
+    {"id":40,"name":"1.5″ Twinkling Star","category":"Twinkling Star","sourceCategory":"TWINKLING STAR","pack":"10Pcs/1Box","buy":20,"mrp":100,"price":25,"profit":5,"margin":20,"tags":["colour","diwali","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/IMG-20260805-WA0013.jpg","savings":75,"discount":75,"audience":["everyone","family"]},
+    {"id":41,"name":"4 ” Twinkling Star","category":"Twinkling Star","sourceCategory":"TWINKLING STAR","pack":"10Pcs/1Box","buy":60,"mrp":300,"price":75,"profit":15,"margin":20,"tags":["colour","diwali","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/IMG-20260622-WA0021.jpg","savings":225,"discount":75,"audience":["everyone","family"]},
+    {"id":42,"name":"Rope Pink Colour","category":"Twinkling Star","sourceCategory":"TWINKLING STAR","pack":"4Pcs/1Box","buy":170,"mrp":850,"price":215,"profit":45,"margin":20.930232558139537,"tags":["colour","diwali","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250712_083253.jpg","savings":635,"discount":74.7,"audience":["everyone","family"]},
+    {"id":43,"name":"Hydro Bomb","category":"Bombs","sourceCategory":"BOMBS","pack":"10Pcs/1Box Sivakasi crackers shop","buy":65,"mrp":325,"price":85,"profit":20,"margin":23.52941176470588,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00101.jpg","savings":240,"discount":73.8,"audience":["adults","everyone","family"]},
+    {"id":44,"name":"King Of King Bomb","category":"Bombs","sourceCategory":"BOMBS","pack":"10Pcs/1Box","buy":75,"mrp":375,"price":95,"profit":20,"margin":21.052631578947366,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00131.jpg","savings":280,"discount":74.7,"audience":["adults","everyone","family"]},
+    {"id":45,"name":"Tracer bomb","category":"Bombs","sourceCategory":"BOMBS","pack":"10Pcs/1Box","buy":120,"mrp":600,"price":150,"profit":30,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/10/InShot_20250505_133409670-scaled.jpg","savings":450,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":46,"name":"Agni Bomb","category":"Bombs","sourceCategory":"BOMBS","pack":"10Pcs/1Box","buy":180,"mrp":900,"price":225,"profit":45,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/IMG-20260707-WA0005.jpg","savings":675,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":47,"name":"Digital Bomb","category":"Bombs","sourceCategory":"BOMBS","pack":"10Pcs/1Box","buy":200,"mrp":1000,"price":250,"profit":50,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00081.jpg","savings":750,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":48,"name":"Paper Bomb 1/4 Kg","category":"Paper Bombs","sourceCategory":"PAPER BOMBS","pack":"1Pcs/1Box","buy":45,"mrp":225,"price":60,"profit":15,"margin":25,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250714_061404.jpg","savings":165,"discount":73.3,"audience":["adults","everyone","family"]},
+    {"id":49,"name":"Paper Bomb 1/2 kg","category":"Paper Bombs","sourceCategory":"PAPER BOMBS","pack":"1Pcs/1Box","buy":90,"mrp":450,"price":115,"profit":25,"margin":21.73913043478261,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250714_061254.jpg","savings":335,"discount":74.4,"audience":["adults","everyone","family"]},
+    {"id":50,"name":"Money In The Bank Paper Money","category":"Paper Bombs","sourceCategory":"PAPER BOMBS","pack":"3Pcs/1Box","buy":130,"mrp":650,"price":165,"profit":35,"margin":21.21212121212121,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260629-WA00131.jpg","savings":485,"discount":74.6,"audience":["everyone","family"]},
+    {"id":51,"name":"Magic show","category":"Paper Bombs","sourceCategory":"PAPER BOMBS","pack":"2Pcs/1Box Diwali Crackers","buy":135,"mrp":675,"price":170,"profit":35,"margin":20.588235294117645,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260805-WA0008.jpg","savings":505,"discount":74.8,"audience":["everyone","family"]},
+    {"id":52,"name":"Paper Bomb 1kg","category":"Paper Bombs","sourceCategory":"PAPER BOMBS","pack":"1Pcs/1Box","buy":180,"mrp":750,"price":225,"profit":45,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250714_061335.jpg","savings":525,"discount":70,"audience":["adults","everyone","family"]},
+    {"id":53,"name":"Black Money","category":"Paper Bombs","sourceCategory":"PAPER BOMBS","pack":"","buy":200,"mrp":1000,"price":250,"profit":50,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/IMG-20260616-WA00341.jpg","savings":750,"discount":75,"audience":["everyone","family"]},
+    {"id":54,"name":"Red Bijili","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"100Pcs/1Pkt","buy":25,"mrp":125,"price":35,"profit":10,"margin":28.57142857142857,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00111.jpg","savings":90,"discount":72,"audience":["adults","everyone","family"]},
+    {"id":55,"name":"100 Wala","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"1box","buy":29,"mrp":145,"price":40,"profit":11,"margin":27.5,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250521_131746353-scaled.jpg","savings":105,"discount":72.4,"audience":["adults","everyone","family"]},
+    {"id":56,"name":"Super Stripped Bijili(50Pcs/1Pkt)","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"(50Pcs/1Pkt","buy":32,"mrp":190,"price":40,"profit":8,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/05/IMG-20260622-WA0015-scaled.jpg","savings":150,"discount":78.9,"audience":["adults","everyone","family"]},
+    {"id":57,"name":"200 wala","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"1box","buy":58,"mrp":290,"price":75,"profit":17,"margin":22.666666666666664,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250521_131746353-scaled.jpg","savings":215,"discount":74.1,"audience":["adults","everyone","family"]},
+    {"id":58,"name":"Super Time Pass Stripped Bijili(100Pcs/1Pkt)","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"100Pcs/1Pkt","buy":68,"mrp":300,"price":85,"profit":17,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/05/InShot_20260622_112302113.jpg","savings":215,"discount":71.7,"audience":["adults","everyone","family"]},
+    {"id":59,"name":"90Watts","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"3Pcs/1Box Sivakasi pattasu kadai","buy":125,"mrp":625,"price":160,"profit":35,"margin":21.875,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/IMG-20260616-WA00371.jpg","savings":465,"discount":74.4,"audience":["everyone","family"]},
+    {"id":60,"name":"1000 Wala Crackling","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"1Pce/1Pkt","buy":150,"mrp":750,"price":190,"profit":40,"margin":21.052631578947366,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/InShot_20250802_131918072-1-scaled.jpg","savings":560,"discount":74.7,"audience":["adults","everyone","family"]},
+    {"id":61,"name":"Old is Gold","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"25Pcs/1Box","buy":160,"mrp":800,"price":200,"profit":40,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00001.jpg","savings":600,"discount":75,"audience":["everyone","family"]},
+    {"id":62,"name":"2000 Wala Crackling","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"1Pce/1Pkt","buy":300,"mrp":1500,"price":375,"profit":75,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/InShot_20250802_131918072-1-scaled.jpg","savings":1125,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":63,"name":"5000 Wala Crackling","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"1Pce/1Pkt","buy":750,"mrp":3750,"price":940,"profit":190,"margin":20.212765957446805,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/InShot_20250802_131918072-1-scaled.jpg","savings":2810,"discount":74.9,"audience":["adults","everyone","family"]},
+    {"id":64,"name":"10000 Wala Crackling","category":"Walas & Bijili","sourceCategory":"BIJILI CRACKERS","pack":"1Pce/1Pkt","buy":1500,"mrp":7500,"price":1875,"profit":375,"margin":20,"tags":["adults","diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2025/07/InShot_20250802_131918072-1-scaled.jpg","savings":5625,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":65,"name":"Selfie Phone","category":"Hand Lighters","sourceCategory":"HAND LIGHTERS","pack":"1pce","buy":110,"mrp":550,"price":140,"profit":30,"margin":21.428571428571427,"tags":["adults","diwali","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/08/InShot_20260828_121315886-scaled.jpg","savings":410,"discount":74.5,"audience":["everyone","family"]},
+    {"id":66,"name":"Colour Smoke","category":"Hand Lighters","sourceCategory":"HAND LIGHTERS","pack":"","buy":125,"mrp":625,"price":160,"profit":35,"margin":21.875,"tags":["adults","colour","diwali","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00261.jpg","savings":465,"discount":74.4,"audience":["everyone","family"]},
+    {"id":67,"name":"Hi Tech Pencil","category":"Hand Lighters","sourceCategory":"HAND LIGHTERS","pack":"","buy":126,"mrp":630,"price":160,"profit":34,"margin":21.25,"tags":["adults","diwali","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00201.jpg","savings":470,"discount":74.6,"audience":["everyone","family"]},
+    {"id":68,"name":"Selfi Stick","category":"Hand Lighters","sourceCategory":"HAND LIGHTERS","pack":"5Pcs/1Box","buy":135,"mrp":675,"price":170,"profit":35,"margin":20.588235294117645,"tags":["adults","diwali","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250602_102953878-scaled.jpg","savings":505,"discount":74.8,"audience":["everyone","family"]},
+    {"id":69,"name":"Sivakasi Special Pencil","category":"Hand Lighters","sourceCategory":"HAND LIGHTERS","pack":"","buy":155,"mrp":775,"price":195,"profit":40,"margin":20.51282051282051,"tags":["adults","diwali","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA001721.jpg","savings":580,"discount":74.8,"audience":["everyone","family"]},
+    {"id":70,"name":"Top Gun","category":"Hand Lighters","sourceCategory":"HAND LIGHTERS","pack":"5Pcs/1Box","buy":215,"mrp":1075,"price":270,"profit":55,"margin":20.37037037037037,"tags":["adults","diwali","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00331.jpg","savings":805,"discount":74.9,"audience":["everyone","family"]},
+    {"id":71,"name":"Vel","category":"Hand Lighters","sourceCategory":"HAND LIGHTERS","pack":"2Pcs/1Box","buy":220,"mrp":1100,"price":275,"profit":55,"margin":20,"tags":["adults","diwali","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/09/InShot_20260911_164402949-scaled.jpg","savings":825,"discount":75,"audience":["everyone","family"]},
+    {"id":72,"name":"Photo Flash","category":"Colour Flash","sourceCategory":"COLOUR FLASH","pack":"5Pcs/1Box","buy":65,"mrp":325,"price":85,"profit":20,"margin":23.52941176470588,"tags":["colour","diwali","family","kids","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250723_102356.jpg","savings":240,"discount":73.8,"audience":["everyone","family","kids"]},
+    {"id":73,"name":"Color Changing Butter Fly","category":"Colour Flash","sourceCategory":"COLOUR FLASH","pack":"10Pcs/1Box","buy":85,"mrp":425,"price":110,"profit":25,"margin":22.727272727272727,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250723_102726.jpg","savings":315,"discount":74.1,"audience":["everyone","family"]},
+    {"id":74,"name":"Electric Stone","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"","buy":16,"mrp":80,"price":20,"profit":4,"margin":20,"tags":["diwali","family","kids","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00171.jpg","savings":60,"discount":75,"audience":["everyone","family","kids"]},
+    {"id":75,"name":"Magic Pops","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"","buy":16,"mrp":80,"price":20,"profit":4,"margin":20,"tags":["diwali","family","kids","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00211.jpg","savings":60,"discount":75,"audience":["everyone","family","kids"]},
+    {"id":76,"name":"Jee Boom Baa","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"","buy":16,"mrp":80,"price":20,"profit":4,"margin":20,"tags":["diwali","family","kids","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00161.jpg","savings":60,"discount":75,"audience":["everyone","family"]},
+    {"id":77,"name":"Roll Cap","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"1box","buy":90,"mrp":450,"price":115,"profit":25,"margin":21.73913043478261,"tags":["diwali","family","kids","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250806_011215.jpg","savings":335,"discount":74.4,"audience":["everyone","family","kids"]},
+    {"id":78,"name":"Bullet 99 Baby Gun","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"1Pce/1Box","buy":100,"mrp":500,"price":125,"profit":25,"margin":20,"tags":["diwali","family","kids","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20260905_155641585-scaled.jpg","savings":375,"discount":75,"audience":["everyone","family","kids"]},
+    {"id":79,"name":"Emu Egg","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"","buy":140,"mrp":700,"price":175,"profit":35,"margin":20,"tags":["diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260629-WA00101.jpg","savings":525,"discount":75,"audience":["everyone","family","kids"]},
+    {"id":80,"name":"Pistol 5G","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"2Pcs/1Box","buy":180,"mrp":900,"price":225,"profit":45,"margin":20,"tags":["diwali","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250524_105716799.jpg","savings":675,"discount":75,"audience":["everyone","family"]},
+    {"id":81,"name":"Kids Car","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"2Pcs/1Box","buy":198,"mrp":990,"price":250,"profit":52,"margin":20.8,"tags":["diwali","family","kids","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260716-WA00021.jpg","savings":740,"discount":74.7,"audience":["everyone","family","kids"]},
+    {"id":82,"name":"007 Colour Crackling Gun","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"","buy":220,"mrp":1100,"price":275,"profit":55,"margin":20,"tags":["colour","diwali","sound","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250617_135341158-scaled.jpg","savings":825,"discount":75,"audience":["everyone","family"]},
+    {"id":83,"name":"Cone Ice Cream","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"2Pcs/1Box","buy":240,"mrp":1200,"price":300,"profit":60,"margin":20,"tags":["diwali","family","kids","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2026/08/InShot_20260828_121831152-scaled.jpg","savings":900,"discount":75,"audience":["everyone","family","kids"]},
+    {"id":84,"name":"Bus","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"1Pce/1Box","buy":300,"mrp":1500,"price":375,"profit":75,"margin":20,"tags":["diwali","family","kids","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20260903_133139364-scaled.jpg","savings":1125,"discount":75,"audience":["everyone","family","kids"]},
+    {"id":85,"name":"Duck","category":"Kids Crackers","sourceCategory":"KIDS CRACKERS","pack":"1Pce/1Box","buy":320,"mrp":1600,"price":400,"profit":80,"margin":20,"tags":["diwali","family","kids","sound","variety"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20260903_124909276-scaled.jpg","savings":1200,"discount":75,"audience":["everyone","family","kids"]},
+    {"id":86,"name":"KitKat Crackling Star","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"10Pcs/1Box","buy":25,"mrp":125,"price":35,"profit":10,"margin":28.57142857142857,"tags":["colour","diwali","family","kids","sound","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2025/05/InShot_20250806_140455623-scaled.jpg","savings":90,"discount":72,"audience":["adults","everyone","family"]},
+    {"id":87,"name":"Asrsfi Big","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"10Pcs/1Box","buy":32,"mrp":160,"price":40,"profit":8,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2025/05/InShot_20250504_234359145-1-scaled.jpg","savings":120,"discount":75,"audience":["adults","everyone","family"]},
+    {"id":88,"name":"Golden Flower","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"","buy":50,"mrp":250,"price":65,"profit":15,"margin":23.07692307692308,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00321.jpg","savings":185,"discount":74,"audience":["adults","everyone","family"]},
+    {"id":89,"name":"Tim Tam","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"","buy":62,"mrp":310,"price":80,"profit":18,"margin":22.5,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00241.jpg","savings":230,"discount":74.2,"audience":["adults","everyone","family"]},
+    {"id":90,"name":"Moon Light Shower","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"5Pcs/1Box","buy":82,"mrp":410,"price":105,"profit":23,"margin":21.904761904761905,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00021.jpg","savings":305,"discount":74.4,"audience":["adults","everyone","family"]},
+    {"id":91,"name":"Sun Light Golden Shower","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"5Pcs/1Box","buy":82,"mrp":410,"price":105,"profit":23,"margin":21.904761904761905,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260805-WA0007.jpg","savings":305,"discount":74.4,"audience":["adults","everyone","family"]},
+    {"id":92,"name":"Disco Shower","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"5Pcs/1Box","buy":85,"mrp":425,"price":110,"profit":25,"margin":22.727272727272727,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00061.jpg","savings":315,"discount":74.1,"audience":["adults","everyone","family"]},
+    {"id":93,"name":"Peacock Feather 5pcs","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"5Pcs/1Box","buy":90,"mrp":450,"price":115,"profit":25,"margin":21.73913043478261,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA000311.jpg","savings":335,"discount":74.4,"audience":["adults","everyone","family"]},
+    {"id":94,"name":"Golden Drops","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"5Pcs/1Box Sivakasi fireworks","buy":90,"mrp":450,"price":115,"profit":25,"margin":21.73913043478261,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/07/IMG-20260707-WA00041.jpg","savings":335,"discount":74.4,"audience":["adults","everyone","family"]},
+    {"id":95,"name":"Mini Siren","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"5Pcs/1Box","buy":130,"mrp":650,"price":165,"profit":35,"margin":21.21212121212121,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250723_105459.jpg","savings":485,"discount":74.6,"audience":["adults","everyone","family"]},
+    {"id":96,"name":"Mega Siren","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"2Pcs/1Box","buy":130,"mrp":650,"price":165,"profit":35,"margin":21.21212121212121,"tags":["colour","diwali","family","premium","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/InShot_20250504_235911010-scaled.jpg","savings":485,"discount":74.6,"audience":["adults","everyone","family"]},
+    {"id":97,"name":"Pogo 5 Color Mix","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"5Pcs/1Box","buy":150,"mrp":750,"price":190,"profit":40,"margin":21.052631578947366,"tags":["colour","diwali","family","kids","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2024/09/20250723_110708.jpg","savings":560,"discount":74.7,"audience":["adults","everyone","family","kids"]},
+    {"id":98,"name":"Madura Malli","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"2Pcs/1Box","buy":155,"mrp":775,"price":195,"profit":40,"margin":20.51282051282051,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA001121.jpg","savings":580,"discount":74.8,"audience":["adults","everyone","family"]},
+    {"id":99,"name":"Angry Birds/Scooby do 5 Color Mix","category":"Fountains","sourceCategory":"MINI FOUNTAINS","pack":"5Pcs/1Box","buy":280,"mrp":1400,"price":350,"profit":70,"margin":20,"tags":["colour","diwali","family","variety","visual"],"image":"https://supercrackers.in/wp-content/uploads/2026/06/IMG-20260616-WA00141.jpg","savings":1050,"discount":75,"audience":["adults","everyone","family"]}
+  ];
 
-  /*
-   * products.json is stored at the server root.
-   * Load it through the server API.
-   */
-  window.TAMILANDA_PRODUCTS_PROMISE = fetch("/api/products", {
-    method: "GET",
-    cache: "no-store",
-    headers: {
-      Accept: "application/json"
+  // Set default synchronous catalogue immediately
+  window.TAMILANDA_PRODUCTS = DEFAULT_CATALOGUE;
+  window.PRODUCTS = DEFAULT_CATALOGUE;
+  window.TAMILANDA_PRODUCTS_READY = true;
+
+  function processProducts(products) {
+    if (!Array.isArray(products) || !products.length) {
+      return window.TAMILANDA_PRODUCTS;
     }
-  })
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error(
-          "Unable to load product catalogue: HTTP " +
-            response.status
-        );
-      }
 
-      return response.json();
-    })
+    var validProducts = products.filter(function (product) {
+      return (
+        product &&
+        product.id !== undefined &&
+        typeof product.name === "string" &&
+        Number.isFinite(Number(product.price)) &&
+        Number(product.price) >= 0
+      );
+    });
 
-    .then(function (products) {
-      if (!Array.isArray(products)) {
-        throw new Error(
-          "Product catalogue format is invalid."
-        );
-      }
-
-      var validProducts = products.filter(function (product) {
-        return (
-          product &&
-          Number.isInteger(Number(product.id)) &&
-          typeof product.name === "string" &&
-          typeof product.category === "string" &&
-          Number.isFinite(Number(product.price)) &&
-          Number(product.price) >= 0
-        );
-      });
-
-      if (!validProducts.length) {
-        throw new Error(
-          "Product catalogue is empty."
-        );
-      }
-
+    if (validProducts.length > 0) {
       window.TAMILANDA_PRODUCTS = validProducts;
       window.TAMILANDA_PRODUCTS_READY = true;
-
-      /*
-       * Backward compatibility.
-       * Existing app.js code can use PRODUCTS.
-       */
       window.PRODUCTS = validProducts;
+    }
 
-      console.info(
-        "Tamilanda product catalogue loaded:",
-        validProducts.length,
-        "products"
-      );
+    return window.TAMILANDA_PRODUCTS;
+  }
 
-      return validProducts;
+  function loadFromApi() {
+    var baseUrl = window.TAMILANDA_API_BASE || "";
+    var apiUrl = baseUrl + "/api/products";
+
+    return fetch(apiUrl, {
+      method: "GET",
+      cache: "no-store",
+      headers: { Accept: "application/json" }
     })
+      .then(function (res) {
+        if (!res.ok) throw new Error("API status " + res.status);
+        return res.json();
+      })
+      .then(processProducts);
+  }
 
-    .catch(function (error) {
-      console.error(
-        "Tamilanda product catalogue failed to load:",
-        error
-      );
+  function loadFromStaticFile() {
+    var paths = ["products.json", "./products.json", "public/products.json"];
 
-      window.TAMILANDA_PRODUCTS = [];
-      window.PRODUCTS = [];
-      window.TAMILANDA_PRODUCTS_READY = false;
+    function tryPath(index) {
+      if (index >= paths.length) {
+        return Promise.resolve(window.TAMILANDA_PRODUCTS);
+      }
 
-      throw error;
+      return fetch(paths[index], {
+        method: "GET",
+        cache: "no-store",
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("Status " + res.status);
+          return res.json();
+        })
+        .then(processProducts)
+        .catch(function () {
+          return tryPath(index + 1);
+        });
+    }
+
+    return tryPath(0);
+  }
+
+  window.TAMILANDA_PRODUCTS_PROMISE = loadFromApi()
+    .catch(function () {
+      return loadFromStaticFile();
+    })
+    .catch(function () {
+      return window.TAMILANDA_PRODUCTS;
     });
 })();
