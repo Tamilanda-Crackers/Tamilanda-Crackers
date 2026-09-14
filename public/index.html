@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -26,16 +27,10 @@
     <!-- Website Config -->
     <script src="config.js"></script>
 
-    <!-- Product Data -->
+    <!-- Product Data Loader -->
     <script src="products.js"></script>
-
-    <!--
-        PUTER.JS
-        Free / keyless AI integration.
-        This must load BEFORE app.js.
-    -->
-    <script src="https://js.puter.com/v2/"></script>
 </head>
+
 
 <body>
 
@@ -44,12 +39,14 @@
     ========================================================== -->
 
     <div class="night-background">
+
         <div class="moon"></div>
 
         <div class="firework firework-1"></div>
         <div class="firework firework-2"></div>
         <div class="firework firework-3"></div>
         <div class="firework firework-4"></div>
+
     </div>
 
 
@@ -66,20 +63,36 @@
                 class="brand"
                 aria-label="Tamilanda Crackers Home"
             >
-                <div class="brand-icon">🧨</div>
+
+                <div class="brand-icon">
+                    🧨
+                </div>
 
                 <div class="brand-text">
-                    <strong>TAMILANDA</strong>
-                    <span>CRACKERS</span>
+
+                    <strong>
+                        TAMILANDA
+                    </strong>
+
+                    <span>
+                        CRACKERS
+                    </span>
+
                 </div>
+
             </a>
 
 
             <nav class="main-nav">
 
-                <a href="#home">HOME</a>
+                <a href="#home">
+                    HOME
+                </a>
 
-                <a href="#products">CRACKERS</a>
+                <a href="#products">
+                    CRACKERS
+                </a>
+
 
                 <button
                     type="button"
@@ -89,13 +102,19 @@
                     ✨ AI SELECT
                 </button>
 
+
                 <button
                     type="button"
                     id="openCartButton"
                     class="nav-cart-button"
                 >
+
                     🛒 CART
-                    <span id="cartCount">0</span>
+
+                    <span id="cartCount">
+                        0
+                    </span>
+
                 </button>
 
             </nav>
@@ -131,9 +150,11 @@
             ✨ AI SELECT
         </button>
 
+
         <a href="#products">
             🧨 CRACKERS
         </a>
+
 
         <button
             type="button"
@@ -159,15 +180,24 @@
                     DIWALI 2026 • SIVAKASI
                 </div>
 
+
                 <h1>
+
                     LIGHT UP
-                    <span>THE NIGHT.</span>
+
+                    <span>
+                        THE NIGHT.
+                    </span>
+
                 </h1>
 
+
                 <p class="hero-description">
+
                     Premium crackers at customer-friendly prices.
                     Build your perfect Diwali selection with our
                     smart AI shopping assistant.
+
                 </p>
 
 
@@ -180,6 +210,7 @@
                     >
                         ✨ BUILD MY SELECTION
                     </button>
+
 
                     <button
                         type="button"
@@ -195,20 +226,41 @@
                 <div class="hero-stats">
 
                     <div class="hero-stat">
+
                         <strong id="heroProductCount">
                             263+
                         </strong>
-                        <span>PRODUCTS</span>
+
+                        <span>
+                            PRODUCTS
+                        </span>
+
                     </div>
 
-                    <div class="hero-stat">
-                        <strong>2026</strong>
-                        <span>DIWALI</span>
-                    </div>
 
                     <div class="hero-stat">
-                        <strong>₹</strong>
-                        <span>BEST PRICE</span>
+
+                        <strong>
+                            2026
+                        </strong>
+
+                        <span>
+                            DIWALI
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            ₹
+                        </strong>
+
+                        <span>
+                            BEST PRICE
+                        </span>
+
                     </div>
 
                 </div>
@@ -224,28 +276,41 @@
 
                 <div class="ai-card-glow"></div>
 
+
                 <div class="ai-card-icon">
                     ✨
                 </div>
+
 
                 <div class="ai-card-label">
                     TAMILANDA AI
                 </div>
 
+
                 <h2>
+
                     Tell us what
-                    <span>you want.</span>
+
+                    <span>
+                        you want.
+                    </span>
+
                 </h2>
 
+
                 <p>
+
                     Budget, family size, sound level,
                     colour, variety — just tell us naturally.
+
                 </p>
 
 
                 <div class="ai-example">
 
-                    <span>Try:</span>
+                    <span>
+                        Try:
+                    </span>
 
                     <strong>
                         “₹2000 family ku balanced selection venum”
@@ -284,9 +349,15 @@
                         SHOP THE COLLECTION
                     </div>
 
+
                     <h2>
+
                         FIND YOUR
-                        <span>FAVOURITES.</span>
+
+                        <span>
+                            FAVOURITES.
+                        </span>
+
                     </h2>
 
                 </div>
@@ -315,6 +386,7 @@
                         🔎
                     </span>
 
+
                     <input
                         type="search"
                         id="searchInput"
@@ -322,6 +394,7 @@
                         placeholder="Search crackers, rockets, fountains..."
                         autocomplete="off"
                     >
+
 
                     <button
                         type="button"
@@ -339,6 +412,7 @@
                     id="sortSelect"
                     class="sort-select"
                 >
+
                     <option value="recommended">
                         Sort: Recommended
                     </option>
@@ -354,6 +428,7 @@
                     <option value="name">
                         Name: A → Z
                     </option>
+
                 </select>
 
             </div>
@@ -378,6 +453,7 @@
                 <span id="resultCount">
                     Loading products...
                 </span>
+
 
                 <button
                     type="button"
@@ -414,13 +490,16 @@
                     🔎
                 </div>
 
+
                 <h3>
                     No Crackers Found
                 </h3>
 
+
                 <p>
                     Try another search or reset the filters.
                 </p>
+
 
                 <button
                     type="button"
@@ -447,16 +526,24 @@
                     ✨
                 </div>
 
+
                 <div>
 
                     <div class="section-eyebrow">
                         NOT SURE WHAT TO BUY?
                     </div>
 
+
                     <h2>
+
                         LET AI BUILD
-                        <span>YOUR DIWALI.</span>
+
+                        <span>
+                            YOUR DIWALI.
+                        </span>
+
                     </h2>
+
 
                     <p>
                         Tell us your budget and what kind of
@@ -464,6 +551,7 @@
                     </p>
 
                 </div>
+
 
                 <button
                     type="button"
@@ -505,11 +593,13 @@
                         YOUR SELECTION
                     </div>
 
+
                     <h2>
                         🛒 YOUR CART
                     </h2>
 
                 </div>
+
 
                 <button
                     type="button"
@@ -530,8 +620,15 @@
 
 
             <div class="cart-empty-state">
-                <div>🛒</div>
-                <p>Your cart is empty.</p>
+
+                <div>
+                    🛒
+                </div>
+
+                <p>
+                    Your cart is empty.
+                </p>
+
             </div>
 
 
@@ -555,14 +652,21 @@
                     id="whatsappOrderButton"
                     class="whatsapp-order-button"
                 >
-                    <span>💬</span>
+
+                    <span>
+                        💬
+                    </span>
+
                     ORDER ON WHATSAPP
+
                 </button>
 
 
                 <p class="cart-note">
+
                     Your order will open in WhatsApp
                     with the selected products and quantities.
+
                 </p>
 
             </div>
@@ -580,7 +684,6 @@
         id="aiOverlay"
         class="ai-overlay"
         aria-hidden="true"
-        hidden
     >
 
         <section
@@ -600,15 +703,22 @@
                         ✨
                     </div>
 
+
                     <div>
 
                         <div class="ai-modal-label">
                             TAMILANDA AI
                         </div>
 
+
                         <h2 id="aiModalTitle">
+
                             BUILD YOUR
-                            <span>DIWALI.</span>
+
+                            <span>
+                                DIWALI.
+                            </span>
+
                         </h2>
 
                     </div>
@@ -633,10 +743,13 @@
             <div class="ai-intro">
 
                 <p>
+
                     Tell me what you're looking for.
                     You can type in <strong>Tanglish</strong>,
                     Tamil or English.
+
                 </p>
+
 
                 <div class="ai-example-pills">
 
@@ -648,6 +761,7 @@
                         ₹1000 • Family
                     </button>
 
+
                     <button
                         type="button"
                         class="ai-example-pill"
@@ -655,6 +769,7 @@
                     >
                         ₹2000 • Sound Kammi
                     </button>
+
 
                     <button
                         type="button"
@@ -682,16 +797,20 @@
                         ✨
                     </div>
 
+
                     <div class="chat-bubble">
 
                         <strong>
                             Hi! 👋
                         </strong>
 
+
                         <p>
+
                             Ungaloda budget and preference
                             sollunga. Naan suitable crackers
                             selection build pannuren.
+
                         </p>
 
                     </div>
@@ -715,6 +834,7 @@
                     ₹500 Best
                 </button>
 
+
                 <button
                     type="button"
                     data-prompt="₹1000 family selection"
@@ -722,12 +842,14 @@
                     ₹1000 Family
                 </button>
 
+
                 <button
                     type="button"
                     data-prompt="₹2000 balanced selection"
                 >
                     ₹2000 Balanced
                 </button>
+
 
                 <button
                     type="button"
@@ -750,6 +872,7 @@
                     autocomplete="off"
                 ></textarea>
 
+
                 <button
                     type="button"
                     id="aiSendButton"
@@ -763,8 +886,10 @@
 
 
             <div class="ai-disclaimer">
+
                 AI recommendations are based on the products
                 and prices currently available on this website.
+
             </div>
 
         </section>
@@ -781,10 +906,13 @@
         id="mobileCartButton"
         class="mobile-cart-floating"
     >
+
         🛒
+
         <span id="mobileCartCount">
             0
         </span>
+
     </button>
 
 
@@ -796,16 +924,24 @@
 
         <div class="footer-main">
 
+
             <div class="footer-brand">
 
                 <div class="footer-logo">
                     🧨
                 </div>
 
+
                 <h3>
+
                     TAMILANDA
-                    <span>CRACKERS</span>
+
+                    <span>
+                        CRACKERS
+                    </span>
+
                 </h3>
+
 
                 <p>
                     Light Up The Night.
@@ -820,13 +956,16 @@
                     QUICK LINKS
                 </h4>
 
+
                 <a href="#home">
                     Home
                 </a>
 
+
                 <a href="#products">
                     Products
                 </a>
+
 
                 <button
                     type="button"
@@ -844,13 +983,16 @@
                     ORDER
                 </h4>
 
+
                 <p>
                     Fast WhatsApp ordering
                 </p>
 
+
                 <p>
                     Customer-friendly pricing
                 </p>
+
 
                 <p>
                     Sivakasi crackers
@@ -865,9 +1007,11 @@
                     CONTACT
                 </h4>
 
+
                 <p>
                     📍 Sivakasi, Tamil Nadu
                 </p>
+
 
                 <p>
                     💬 WhatsApp Orders
@@ -884,6 +1028,7 @@
                 © 2026 Tamilanda Crackers
             </span>
 
+
             <span>
                 LIGHT UP THE NIGHT ✨
             </span>
@@ -899,26 +1044,6 @@
 
     <script src="app.js"></script>
 
-
-    <!-- =========================================================
-         PUTER FALLBACK CHECK
-    ========================================================== -->
-
-    <script>
-        window.addEventListener("load", function () {
-
-            if (typeof window.puter === "undefined") {
-                console.warn(
-                    "Puter.js did not load. AI features may be unavailable."
-                );
-            } else {
-                console.log(
-                    "Puter.js loaded successfully."
-                );
-            }
-
-        });
-    </script>
-
 </body>
+
 </html>
