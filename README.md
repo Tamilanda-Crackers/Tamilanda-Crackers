@@ -1,61 +1,46 @@
-# 🎆 Tamilanda Crackers — Real AI
+# 🧨 Tamilanda Crackers
 
-A premium Diwali crackers shopping website with a real AI shopping assistant.
+A premium Diwali crackers shopping website with an AI-powered product recommendation assistant.
 
 ## ✨ Features
 
-- 🤖 Real AI-powered cracker recommendations
-- 💬 Natural Tamil / Tanglish / English conversation
-- 💰 Budget-aware product selection
-- 🎯 AI adapts recommendations based on user preferences
-- 🔄 Users can modify an existing recommendation
+- 🧨 Complete crackers product catalogue
+- 💰 MRP + offer pricing
 - 🛒 Shopping cart
-- 📱 WhatsApp ordering
+- 📱 WhatsApp order support
 - 🔎 Product search
 - 🏷️ Category filtering
 - ↕️ Product sorting
-- 💸 MRP + offer pricing
-- 📦 263-product catalogue
-- 🌙 Premium black / gold Diwali design
-- 📱 Mobile responsive
+- 🤖 AI shopping assistant
+- 🧠 AI-powered personalised cracker suggestions
+- 💬 Tamil / Tanglish / English support
+- 📱 Mobile responsive design
+- 🌙 Premium dark/gold Diwali theme
 
 ## 🤖 AI Assistant
 
-The Smart Suggest feature is not a fixed preset system.
+The website uses **Puter.js AI** with a DeepSeek model directly from the browser.
 
-The AI can understand natural requests such as:
+No OpenAI API key is required by this project.
 
-- "Family ku 2000 budget"
-- "Colour neraya venum"
-- "Sound kammiya irukkanum"
-- "Kids ku suitable ah"
-- "More sky shots"
-- "Make it closer to 2k"
-- "Reduce sound"
-- "Change the sky shots"
+The AI assistant can understand requests such as:
 
-The AI uses the product catalogue and budget to create a recommendation dynamically.
+- `2k budget la crackers kudu`
+- `sound kammi venum`
+- `colour items neraya venum`
+- `kids ku suitable ah kudu`
+- `family ku 5k selection`
+- `intha plan change pannu`
 
-## 🏗️ Architecture
+The assistant dynamically builds a selection based on the user's requirements and the available product catalogue.
 
-```text
-Browser
-   │
-   ▼
-Frontend
-   │
-   │ POST /api/ai/suggest
-   ▼
-Node.js + Express
-   │
-   ▼
-OpenAI API
-   │
-   ▼
-AI Recommendation
-   │
-   ▼
-Validated Product Selection
-   │
-   ▼
-Cart / WhatsApp Order
+## 🛒 Ordering
+
+Customers can add products to the cart and place their order through WhatsApp.
+
+## 🚀 Run Locally
+
+Install dependencies:
+
+```bash
+npm install
