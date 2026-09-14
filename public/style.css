@@ -2507,6 +2507,7 @@ button.ai-change-plan-button {
   .header-inner {
     width: calc(100% - 24px) !important;
     padding: 0 !important;
+    position: relative !important;
   }
 
   .main-nav {
@@ -2515,6 +2516,112 @@ button.ai-change-plan-button {
 
   .mobile-menu-button {
     display: inline-grid !important;
+    width: 44px !important;
+    height: 44px !important;
+    place-items: center !important;
+    border: 1px solid var(--gold-line) !important;
+    border-radius: 10px !important;
+    background: #101015 !important;
+    color: var(--gold) !important;
+    font-size: 22px !important;
+    cursor: pointer !important;
+    z-index: 205 !important;
+  }
+
+  .mobile-nav {
+    display: none;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #0d0d12 !important;
+    border-bottom: 1px solid var(--gold-line) !important;
+    padding: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9) !important;
+    z-index: 205 !important;
+  }
+
+  .mobile-nav.open {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .mobile-nav a,
+  .mobile-nav button {
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 10px !important;
+    background: #14141c !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  /* FLOATING MOBILE CART BUTTON */
+  .mobile-cart-floating {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: fixed !important;
+    bottom: 24px !important;
+    right: 20px !important;
+    width: 58px !important;
+    height: 58px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #ffd36d, #e6a51e) !important;
+    border: 2px solid #000000 !important;
+    color: #000000 !important;
+    font-size: 24px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(245, 189, 69, 0.4) !important;
+    z-index: 280 !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+  }
+
+  .mobile-cart-floating span {
+    position: absolute !important;
+    top: -4px !important;
+    right: -4px !important;
+    background: #ef4444 !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    min-width: 22px !important;
+    height: 22px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 2px solid #000000 !important;
+  }
+
+  /* CATEGORY FILTERS MOBILE HORIZONTAL SCROLL */
+  .category-filters {
+    display: flex !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    padding-bottom: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+
+  .category-filters::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .category-button {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    min-height: 44px !important;
+    touch-action: manipulation !important;
   }
 
   .min-order-banner {
@@ -2547,27 +2654,34 @@ button.ai-change-plan-button {
 
   button.ai-combo-card,
   button.ai-action-card {
-    padding: 12px 14px !important;
+    padding: 14px !important;
     gap: 12px !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    touch-action: manipulation !important;
+    min-height: 52px !important;
   }
 
   .combo-icon {
-    font-size: 24px !important;
+    font-size: 26px !important;
   }
 
   .combo-info strong {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .combo-info small {
-    font-size: 10px !important;
+    font-size: 11px !important;
   }
 
   .ai-budget-pills {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
+  }
+
+  button.ai-budget-pill {
+    min-height: 48px !important;
+    touch-action: manipulation !important;
   }
 
   .ai-custom-budget-row {
@@ -2582,12 +2696,12 @@ button.ai-change-plan-button {
   }
 
   .alloc-label {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
 
   input.alloc-input {
     width: 80px !important;
-    font-size: 14px !important;
+    font-size: 15px !important;
   }
 
   .ai-allocation-actions {
