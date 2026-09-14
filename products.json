@@ -6696,8 +6696,8 @@
     "buy": 5000,
     "mrp": 6000,
     "price": 6000,
-    "profit": 1250,
-    "margin": 20,
+    "profit": 1000,
+    "margin": 16.666666666666668,
     "tags": [
       "combo",
       "diwali",
