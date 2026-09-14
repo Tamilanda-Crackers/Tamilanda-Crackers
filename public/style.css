@@ -36,15 +36,18 @@
   box-sizing: border-box;
 }
 
-html {
+html, body {
   scroll-behavior: smooth;
   background: var(--bg);
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   min-width: 320px;
-  overflow-x: hidden;
 
   background:
     radial-gradient(
@@ -228,6 +231,7 @@ img {
   box-shadow: 0 2px 12px rgba(245, 189, 69, 0.3);
   z-index: 201;
   position: relative;
+  white-space: normal !important;
 }
 
 @keyframes bannerShimmer {
@@ -1216,8 +1220,6 @@ img {
 .product-image img {
   transform:
     scale(1.05);
-}
-    scale(1.32);
 }
 
 .product-image-placeholder {
@@ -2454,14 +2456,150 @@ button.ai-change-plan-button {
   color: #cccccc !important;
 }
 
-@media (max-width: 600px) {
+/* =========================================================
+   COMPREHENSIVE MOBILE RESPONSIVE MEDIA QUERIES
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .hero-section {
+    display: flex !important;
+    flex-direction: column !important;
+    width: calc(100% - 24px) !important;
+    min-height: auto !important;
+    padding: 30px 0 50px !important;
+    gap: 30px !important;
+  }
+
+  .hero-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(38px, 11vw, 64px) !important;
+    line-height: 0.92 !important;
+  }
+
+  .hero-ai-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 22px !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-stats {
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 28px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    width: calc(100% - 24px) !important;
+    padding: 0 !important;
+  }
+
+  .main-nav {
+    display: none !important;
+  }
+
+  .mobile-menu-button {
+    display: inline-grid !important;
+  }
+
+  .min-order-banner {
+    padding: 6px 10px !important;
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+  }
+
+  /* AI MODAL MOBILE OVERRIDES */
+  .ai-overlay {
+    padding: 8px !important;
+  }
+
+  .ai-modal {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: calc(100vh - 16px) !important;
+    border-radius: 16px !important;
+  }
+
+  .ai-screen-container {
+    padding: 14px !important;
+  }
+
   .ai-opening-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
+
+  button.ai-combo-card,
+  button.ai-action-card {
+    padding: 12px 14px !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .combo-icon {
+    font-size: 24px !important;
+  }
+
+  .combo-info strong {
+    font-size: 13px !important;
+  }
+
+  .combo-info small {
+    font-size: 10px !important;
+  }
+
   .ai-budget-pills {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
   }
+
+  .ai-custom-budget-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 12px !important;
+  }
+
+  .alloc-row {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+  }
+
+  .alloc-label {
+    font-size: 12px !important;
+  }
+
+  input.alloc-input {
+    width: 80px !important;
+    font-size: 14px !important;
+  }
+
+  .ai-allocation-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
   .ai-alternatives-drawer {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr !important;
   }
 }
