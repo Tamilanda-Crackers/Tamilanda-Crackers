@@ -1,40 +1,4 @@
-"use strict";
-
-/* ============================================================
-   TAMILANDA CRACKERS
-   PUTER.JS + DEEPSEEK AI SHOPPING ASSISTANT
-   ============================================================ */
-
-(() => {
-
-    /* =========================================================
-       CONFIG
-       ========================================================= */
-
-    const AI_MODEL = "deepseek/deepseek-v4-flash";
-
-    const WHATSAPP_NUMBERS = [
-        "919025478790",
-        "919363063571"
-    ];
-
-    const CART_STORAGE_KEY = "tamilanda_crackers_cart_v2";
-
-    const CHAT_STORAGE_KEY = "tamilanda_crackers_ai_chat_v2";
-
-    let products = [];
-
-    let cart = {};
-
-    let conversation = [];
-
-    let currentCategory = "all";
-
-    let currentSearch = "";
-
-    let currentSort = "recommended";
-
-    let aiBusy = false;
+Done    let aiBusy = false;
 
 
     /* =========================================================
