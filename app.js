@@ -110,11 +110,12 @@
             }
 
             if (!Array.isArray(products) || !products.length) {
-                const paths = ["products.json", "./products.json", "/products.json", "public/products.json"];
+                const paths = ["products.json", "./products.json", "public/products.json"];
                 for (const p of paths) {
                     try {
                         const response = await fetch(p, { cache: "no-store" });
-                        if (response.ok) {
+                        const contentType = response.headers.get("content-type") || "";
+                        if (response.ok && contentType.includes("json")) {
                             const data = await response.json();
                             if (Array.isArray(data) && data.length > 0) {
                                 products = data;
@@ -201,7 +202,10 @@
                     };
 
                 })
-                .filter(product => product.price > 0);
+                .filter(product => {
+                    const c = String(product.category || product.sourceCategory || "").toLowerCase();
+                    return product.price > 0 && !c.includes("combo");
+                });
 
 
             updateHeroProductCount();
@@ -280,8 +284,7 @@
         { id: "sparklers", label: "Sparklers", icon: "⭐" },
         { id: "skyshots", label: "Sky Shots & Rockets", icon: "🚀" },
         { id: "chakkars", label: "Ground Chakkars", icon: "🎡" },
-        { id: "kids", label: "Kids Special", icon: "🧒" },
-        { id: "combos", label: "Combos & Gift Boxes", icon: "🎁" }
+        { id: "kids", label: "Kids Special", icon: "🧒" }
     ];
 
     function getPrimaryCategory(product) {
@@ -294,7 +297,6 @@
         if (cat.includes("sparkler") || cat.includes("twinkling") || name.includes("sparkler") || name.includes("star")) return "sparklers";
         if (cat.includes("shot") || cat.includes("sky") || cat.includes("rocket") || name.includes("shot") || name.includes("rocket") || name.includes("display")) return "skyshots";
         if (cat.includes("chakkar") || cat.includes("wheel") || name.includes("chakkar") || name.includes("wheel")) return "chakkars";
-        if (cat.includes("combo") || cat.includes("pack") || cat.includes("gift") || cat.includes("variety") || name.includes("combo") || name.includes("box")) return "combos";
 
         return "sound";
     }
@@ -1486,10 +1488,10 @@
         showAiScreen("result");
         let promptText = "";
 
-        if (mode === "children2500") promptText = "₹2500 children combo with sparklers, fountains, ground chakkars and novelty items";
-        else if (mode === "adult2500") promptText = "₹2500 adult combo with sound crackers, rockets, bombs and multishots";
-        else if (mode === "family2500") promptText = "₹2500 family combo with balanced sparklers, fountains, rockets and sound";
-        else if (mode === "allinone2500") promptText = "₹2500 all in one mixed combo with variety across all categories";
+        if (mode === "children2500") promptText = "₹2500 children selection with sparklers, fountains, ground chakkars and novelty items";
+        else if (mode === "adult2500") promptText = "₹2500 adult selection with sound crackers, rockets, bombs and multishots";
+        else if (mode === "family2500") promptText = "₹2500 family selection with balanced sparklers, fountains, rockets and sound";
+        else if (mode === "allinone2500") promptText = "₹2500 all in one mixed selection with variety across all categories";
 
         await sendAiMessage(promptText);
     }
@@ -2252,7 +2254,6 @@ Return ONLY valid JSON.
         if (pCat === "sparklers") return "⭐ Family Sparkler";
         if (pCat === "skyshots") return "🚀 Night Aerial Display";
         if (pCat === "chakkars") return "🎡 Spinning Ground Wheel";
-        if (pCat === "combos") return "🎁 Variety Combo Pack";
         if (pCat === "sound") return "💥 Festive Sound Cracker";
         return "✨ Selected for Your Budget";
     }
@@ -2356,9 +2357,9 @@ Return ONLY valid JSON.
         if (isKids) {
             categoryKeys.sort((a, b) => (a === "kids" || a === "sparklers" || a === "fountains" || a === "chakkars") ? -1 : 1);
         } else if (isAdult || isHighSound) {
-            categoryKeys.sort((a, b) => (a === "sound" || a === "skyshots" || a === "combos") ? -1 : 1);
+            categoryKeys.sort((a, b) => (a === "sound" || a === "skyshots") ? -1 : 1);
         } else if (isFamily || isAllInOne) {
-            categoryKeys.sort((a, b) => (a === "combos" || a === "fountains" || a === "sparklers") ? -1 : 1);
+            categoryKeys.sort((a, b) => (a === "fountains" || a === "sparklers" || a === "chakkars") ? -1 : 1);
         }
 
         // Collect candidate pool
@@ -3115,21 +3116,24 @@ Return ONLY valid JSON.
             mobileNav
         ) {
 
-            menuButton.addEventListener(
-                "click",
-                () => {
-
-                    mobileNav.classList.toggle(
-                        "open"
-                    );
-
+            const toggleNav = (e) => {
+                if (e) {
+                    e.stopPropagation();
                 }
-            );
+                const isOpen = mobileNav.classList.contains("open");
+                if (isOpen) {
+                    mobileNav.classList.remove("open");
+                } else {
+                    mobileNav.classList.add("open");
+                }
+            };
+
+            menuButton.onclick = toggleNav;
 
         }
 
 
-        $$("#mobileNav a")
+        $$("#mobileNav a, #mobileNav button")
             .forEach(link => {
 
                 link.addEventListener(
@@ -3310,6 +3314,18 @@ Return ONLY valid JSON.
             ?.addEventListener(
                 "click",
                 openAi
+            );
+
+        $("#footerLinkAi")
+            ?.addEventListener(
+                "click",
+                openAi
+            );
+
+        $("#footerLinkCart")
+            ?.addEventListener(
+                "click",
+                openCart
             );
 
 

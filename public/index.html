@@ -905,21 +905,17 @@
 
 
     <!-- =========================================================
-         MOBILE CART BUTTON
+         FLOATING MOBILE CART BUTTON (MOBILE ONLY)
     ========================================================== -->
 
     <button
         type="button"
         id="mobileCartButton"
         class="mobile-cart-floating"
+        aria-label="Open shopping cart"
     >
-
         🛒
-
-        <span id="mobileCartCount">
-            0
-        </span>
-
+        <span id="mobileCartCount">0</span>
     </button>
 
 
@@ -929,117 +925,50 @@
 
     <footer class="site-footer">
 
-        <div class="footer-main">
+        <div class="footer-container">
 
-
-            <div class="footer-brand">
-
-                <div class="footer-logo">
-                    🧨
+            <div class="footer-brand-col">
+                <div class="footer-brand-logo">
+                    <span class="logo-icon">🧨</span>
+                    <div class="brand-text">
+                        <strong>TAMILANDA</strong>
+                        <span>CRACKERS</span>
+                    </div>
                 </div>
-
-
-                <h3>
-
-                    TAMILANDA
-
-                    <span>
-                        CRACKERS
-                    </span>
-
-                </h3>
-
-
-                <p>
-                    Light Up The Night.
-                </p>
-
+                <p class="footer-tagline">Light Up The Night.</p>
+                <p class="footer-desc">Direct Sivakasi wholesale factory pricing with 100% premium safety tested quality.</p>
             </div>
 
-
-            <div class="footer-column">
-
-                <h4>
-                    QUICK LINKS
-                </h4>
-
-
-                <a href="#home">
-                    Home
-                </a>
-
-
-                <a href="#products">
-                    Products
-                </a>
-
-
-                <button
-                    type="button"
-                    id="footerAiLink"
-                >
-                    AI Selection
-                </button>
-
+            <div class="footer-col">
+                <h4 class="footer-title">QUICK LINKS</h4>
+                <ul class="footer-links">
+                    <li><a href="#home" id="footerNavHome">Home</a></li>
+                    <li><a href="#products" id="footerNavProducts">Crackers Collection</a></li>
+                    <li><button type="button" id="footerLinkAi">✨ AI Smart Select</button></li>
+                    <li><button type="button" id="footerLinkCart">🛒 Shopping Cart</button></li>
+                </ul>
             </div>
 
-
-            <div class="footer-column">
-
-                <h4>
-                    ORDER
-                </h4>
-
-
-                <p>
-                    Fast WhatsApp ordering
-                </p>
-
-
-                <p>
-                    Customer-friendly pricing
-                </p>
-
-
-                <p>
-                    Sivakasi crackers
-                </p>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    CONTACT
-                </h4>
-
-
-                <p>
-                    📍 Sivakasi, Tamil Nadu
-                </p>
-
-
-                <p>
-                    💬 WhatsApp Orders
-                </p>
-
+            <div class="footer-col">
+                <h4 class="footer-title">ORDER WITH US</h4>
+                <p class="footer-desc">Fast WhatsApp Order & Instant Confirmation:</p>
+                <div class="footer-whatsapp-box">
+                    <a href="https://wa.me/919025478790" target="_blank" rel="noopener" class="whatsapp-contact-link">
+                        💬 +91 90254 78790
+                    </a>
+                    <a href="https://wa.me/919363063571" target="_blank" rel="noopener" class="whatsapp-contact-link">
+                        💬 +91 93630 63571
+                    </a>
+                </div>
             </div>
 
         </div>
 
-
-        <div class="footer-bottom">
-
-            <span>
-                © 2026 Tamilanda Crackers
-            </span>
-
-
-            <span>
-                LIGHT UP THE NIGHT ✨
-            </span>
-
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-inner">
+                <span>© 2026 Tamilanda Crackers. All rights reserved.</span>
+                <span>Diwali 2026 • Sivakasi Wholesale</span>
+            </div>
         </div>
 
     </footer>

@@ -2457,6 +2457,163 @@ button.ai-change-plan-button {
 }
 
 /* =========================================================
+   FLOATING MOBILE CART BUTTON (DEFAULT HIDDEN ON DESKTOP)
+   ========================================================= */
+
+.mobile-cart-floating {
+  display: none !important;
+}
+
+/* =========================================================
+   FOOTER STYLING
+   ========================================================= */
+
+.site-footer {
+  background: #08080c !important;
+  border-top: 1px solid rgba(245, 189, 69, 0.25) !important;
+  padding-top: 50px !important;
+  margin-top: 60px !important;
+  color: #a0a0ab !important;
+}
+
+.footer-container {
+  width: min(1240px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 1.4fr 1fr 1fr !important;
+  gap: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+.footer-brand-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.footer-brand-logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.footer-brand-logo .logo-icon {
+  font-size: 24px !important;
+}
+
+.footer-brand-logo .brand-text strong {
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+}
+
+.footer-brand-logo .brand-text span {
+  color: var(--gold) !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  margin-left: 4px !important;
+}
+
+.footer-tagline {
+  color: var(--gold) !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  margin: 4px 0 0 0 !important;
+}
+
+.footer-desc {
+  font-size: 12px !important;
+  color: #777782 !important;
+  margin: 4px 0 0 0 !important;
+  line-height: 1.5 !important;
+}
+
+.footer-title {
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  margin: 0 0 16px 0 !important;
+}
+
+.footer-links {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.footer-links li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer-links a,
+.footer-links button {
+  background: transparent !important;
+  border: 0 !important;
+  color: #a0a0ab !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  transition: color 0.2s ease !important;
+}
+
+.footer-links a:hover,
+.footer-links button:hover {
+  color: var(--gold) !important;
+}
+
+.footer-whatsapp-box {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  margin-top: 8px !important;
+}
+
+.whatsapp-contact-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(33, 216, 115, 0.08) !important;
+  border: 1px solid rgba(33, 216, 115, 0.3) !important;
+  color: #21d873 !important;
+  padding: 8px 14px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  transition: 0.2s ease !important;
+}
+
+.whatsapp-contact-link:hover {
+  background: #21d873 !important;
+  color: #000000 !important;
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 16px 0 !important;
+  background: #050508 !important;
+}
+
+.footer-bottom-inner {
+  width: min(1240px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 11px !important;
+  color: #666670 !important;
+}
+
+/* =========================================================
    COMPREHENSIVE MOBILE RESPONSIVE MEDIA QUERIES
    ========================================================= */
 
@@ -2495,11 +2652,6 @@ button.ai-change-plan-button {
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 10px !important;
-  }
-
-  .footer-main {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 28px !important;
   }
 }
 
@@ -2713,7 +2865,16 @@ button.ai-change-plan-button {
     grid-template-columns: 1fr !important;
   }
 
-  .footer-main {
+  .footer-container {
     grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    width: calc(100% - 32px) !important;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column !important;
+    gap: 6px !important;
+    text-align: center !important;
+    width: calc(100% - 32px) !important;
   }
 }

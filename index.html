@@ -138,9 +138,41 @@
                 type="button"
                 id="mobileMenuButton"
                 class="mobile-menu-button"
-                aria-label="Open menu"
+                aria-label="Open navigation menu"
             >
                 ☰
+            </button>
+
+        </div>
+
+
+        <div
+            id="mobileNav"
+            class="mobile-nav"
+        >
+
+            <a href="#home">
+                🏠 Home
+            </a>
+
+            <a href="#products">
+                🧨 Crackers
+            </a>
+
+
+            <button
+                type="button"
+                id="openAiFromMobile"
+            >
+                ✨ AI Select
+            </button>
+
+
+            <button
+                type="button"
+                id="openCartFromMobile"
+            >
+                🛒 Shopping Cart
             </button>
 
         </div>
@@ -149,39 +181,7 @@
 
 
     <!-- =========================================================
-         MOBILE NAV
-    ========================================================== -->
-
-    <div
-        id="mobileNav"
-        class="mobile-nav"
-    >
-
-        <button
-            type="button"
-            id="openAiFromMobile"
-        >
-            ✨ AI SELECT
-        </button>
-
-
-        <a href="#products">
-            🧨 CRACKERS
-        </a>
-
-
-        <button
-            type="button"
-            id="openCartFromMobile"
-        >
-            🛒 CART
-        </button>
-
-    </div>
-
-
-    <!-- =========================================================
-         HERO
+         HERO SECTION
     ========================================================== -->
 
     <main id="home">
@@ -191,7 +191,7 @@
             <div class="hero-content">
 
                 <div class="hero-eyebrow">
-                    DIWALI 2026 • SIVAKASI
+                    SIVAKASI WHOLESALE CRACKERS 2026
                 </div>
 
 
@@ -208,30 +208,29 @@
 
                 <p class="hero-description">
 
-                    Premium crackers at customer-friendly prices.
-                    Build your perfect Diwali selection with our
-                    smart AI shopping assistant.
+                    Direct Sivakasi factory pricing with premium quality,
+                    complete safety testing, and fast WhatsApp ordering.
+                    Choose your own collection or let AI build your Diwali mix.
 
                 </p>
 
 
                 <div class="hero-actions">
 
+                    <a
+                        href="#products"
+                        class="primary-button"
+                    >
+                        EXPLORE CRACKERS ↓
+                    </a>
+
+
                     <button
                         type="button"
                         id="heroAiButton"
-                        class="primary-button"
-                    >
-                        ✨ BUILD MY SELECTION
-                    </button>
-
-
-                    <button
-                        type="button"
-                        id="heroAiPreviewButton"
                         class="secondary-button"
                     >
-                        SEE HOW IT WORKS
+                        ✨ AI SMART SELECT
                     </button>
 
                 </div>
@@ -242,11 +241,11 @@
                     <div class="hero-stat">
 
                         <strong id="heroProductCount">
-                            263+
+                            260+
                         </strong>
 
                         <span>
-                            PRODUCTS
+                            Products
                         </span>
 
                     </div>
@@ -255,11 +254,11 @@
                     <div class="hero-stat">
 
                         <strong>
-                            2026
+                            80%
                         </strong>
 
                         <span>
-                            DIWALI
+                            Off Offer
                         </span>
 
                     </div>
@@ -268,11 +267,11 @@
                     <div class="hero-stat">
 
                         <strong>
-                            ₹
+                            100%
                         </strong>
 
                         <span>
-                            BEST PRICE
+                            Sivakasi Quality
                         </span>
 
                     </div>
@@ -282,9 +281,7 @@
             </div>
 
 
-            <!-- =================================================
-                 HERO AI CARD
-            ================================================== -->
+            <!-- HERO AI CARD -->
 
             <div class="hero-ai-card">
 
@@ -297,16 +294,16 @@
 
 
                 <div class="ai-card-label">
-                    TAMILANDA AI
+                    TAMILANDA AI ASSISTANT
                 </div>
 
 
                 <h2>
 
-                    Tell us what
+                    BUILD YOUR
 
                     <span>
-                        you want.
+                        DIWALI MIX
                     </span>
 
                 </h2>
@@ -314,8 +311,9 @@
 
                 <p>
 
-                    Budget, family size, sound level,
-                    colour, variety — just tell us naturally.
+                    Tell us your budget and preferences.
+                    Our AI will select the best combination of
+                    sound, colour, sparklers, and sky shots.
 
                 </p>
 
@@ -323,11 +321,11 @@
                 <div class="ai-example">
 
                     <span>
-                        Try:
+                        Example Request:
                     </span>
 
                     <strong>
-                        “₹2000 family ku balanced selection venum”
+                        "₹2000 family ku balanced selection venum"
                     </strong>
 
                 </div>
@@ -335,10 +333,10 @@
 
                 <button
                     type="button"
-                    id="aiCtaButton"
+                    id="heroAiPreviewButton"
                     class="ai-card-button"
                 >
-                    ASK AI →
+                    ✨ BUILD WITH AI →
                 </button>
 
             </div>
@@ -346,9 +344,9 @@
         </section>
 
 
-        <!-- =====================================================
+        <!-- =========================================================
              PRODUCTS SECTION
-        ====================================================== -->
+        ========================================================== -->
 
         <section
             id="products"
@@ -360,7 +358,7 @@
                 <div>
 
                     <div class="section-eyebrow">
-                        SHOP THE COLLECTION
+                        CATALOGUE
                     </div>
 
 
@@ -388,9 +386,7 @@
             </div>
 
 
-            <!-- =================================================
-                 SEARCH + SORT
-            ================================================== -->
+            <!-- CONTROLS -->
 
             <div class="product-controls">
 
@@ -460,10 +456,6 @@
             ></div>
 
 
-            <!-- =================================================
-                 PRODUCT RESULT INFO
-            ================================================== -->
-
             <div class="products-topbar">
 
                 <span id="resultCount">
@@ -482,19 +474,17 @@
             </div>
 
 
-            <!-- =================================================
-                 PRODUCT GRID
-            ================================================== -->
+            <!-- PRODUCT GRID -->
 
             <div
                 id="productGrid"
                 class="product-grid"
-            ></div>
+            >
+                <div class="loading-state">Loading products...</div>
+            </div>
 
 
-            <!-- =================================================
-                 EMPTY PRODUCTS
-            ================================================== -->
+            <!-- EMPTY STATE -->
 
             <div
                 id="emptyProducts"
@@ -503,17 +493,17 @@
             >
 
                 <div class="empty-icon">
-                    🔎
+                    🧨
                 </div>
 
 
                 <h3>
-                    No Crackers Found
+                    No products found
                 </h3>
 
 
                 <p>
-                    Try another search or reset the filters.
+                    Try searching for another term or reset your filters.
                 </p>
 
 
@@ -522,7 +512,7 @@
                     id="emptyResetButton"
                     class="primary-button"
                 >
-                    RESET FILTERS
+                    RESET ALL FILTERS
                 </button>
 
             </div>
@@ -530,9 +520,9 @@
         </section>
 
 
-        <!-- =====================================================
-             AI CTA SECTION
-        ====================================================== -->
+        <!-- =========================================================
+             AI BOTTOM BANNER
+        ========================================================== -->
 
         <section class="ai-bottom-section">
 
@@ -670,21 +660,12 @@
                     id="whatsappOrderButton"
                     class="whatsapp-order-button"
                 >
-
-                    <span>
-                        💬
-                    </span>
-
-                    ORDER ON WHATSAPP
-
+                    💬 ORDER ON WHATSAPP
                 </button>
 
 
                 <p class="cart-note">
-
-                    Your order will open in WhatsApp
-                    with the selected products and quantities.
-
+                    WhatsApp-la order details verify panni final bill confirmation varum.
                 </p>
 
             </div>
@@ -695,7 +676,7 @@
 
 
     <!-- =========================================================
-         AI MODAL
+         AI MODAL OVERLAY
     ========================================================== -->
 
     <div
@@ -708,10 +689,10 @@
             class="ai-modal"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="aiModalTitle"
+            aria-label="AI SELECT Assistant"
         >
 
-            <!-- AI HEADER -->
+            <!-- AI MODAL HEADER -->
 
             <div class="ai-modal-header">
 
@@ -924,21 +905,17 @@
 
 
     <!-- =========================================================
-         MOBILE CART BUTTON
+         FLOATING MOBILE CART BUTTON (MOBILE ONLY)
     ========================================================== -->
 
     <button
         type="button"
         id="mobileCartButton"
         class="mobile-cart-floating"
+        aria-label="Open shopping cart"
     >
-
         🛒
-
-        <span id="mobileCartCount">
-            0
-        </span>
-
+        <span id="mobileCartCount">0</span>
     </button>
 
 
@@ -948,117 +925,50 @@
 
     <footer class="site-footer">
 
-        <div class="footer-main">
+        <div class="footer-container">
 
-
-            <div class="footer-brand">
-
-                <div class="footer-logo">
-                    🧨
+            <div class="footer-brand-col">
+                <div class="footer-brand-logo">
+                    <span class="logo-icon">🧨</span>
+                    <div class="brand-text">
+                        <strong>TAMILANDA</strong>
+                        <span>CRACKERS</span>
+                    </div>
                 </div>
-
-
-                <h3>
-
-                    TAMILANDA
-
-                    <span>
-                        CRACKERS
-                    </span>
-
-                </h3>
-
-
-                <p>
-                    Light Up The Night.
-                </p>
-
+                <p class="footer-tagline">Light Up The Night.</p>
+                <p class="footer-desc">Direct Sivakasi wholesale factory pricing with 100% premium safety tested quality.</p>
             </div>
 
-
-            <div class="footer-column">
-
-                <h4>
-                    QUICK LINKS
-                </h4>
-
-
-                <a href="#home">
-                    Home
-                </a>
-
-
-                <a href="#products">
-                    Products
-                </a>
-
-
-                <button
-                    type="button"
-                    id="footerAiLink"
-                >
-                    AI Selection
-                </button>
-
+            <div class="footer-col">
+                <h4 class="footer-title">QUICK LINKS</h4>
+                <ul class="footer-links">
+                    <li><a href="#home" id="footerNavHome">Home</a></li>
+                    <li><a href="#products" id="footerNavProducts">Crackers Collection</a></li>
+                    <li><button type="button" id="footerLinkAi">✨ AI Smart Select</button></li>
+                    <li><button type="button" id="footerLinkCart">🛒 Shopping Cart</button></li>
+                </ul>
             </div>
 
-
-            <div class="footer-column">
-
-                <h4>
-                    ORDER
-                </h4>
-
-
-                <p>
-                    Fast WhatsApp ordering
-                </p>
-
-
-                <p>
-                    Customer-friendly pricing
-                </p>
-
-
-                <p>
-                    Sivakasi crackers
-                </p>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    CONTACT
-                </h4>
-
-
-                <p>
-                    📍 Sivakasi, Tamil Nadu
-                </p>
-
-
-                <p>
-                    💬 WhatsApp Orders
-                </p>
-
+            <div class="footer-col">
+                <h4 class="footer-title">ORDER WITH US</h4>
+                <p class="footer-desc">Fast WhatsApp Order & Instant Confirmation:</p>
+                <div class="footer-whatsapp-box">
+                    <a href="https://wa.me/919025478790" target="_blank" rel="noopener" class="whatsapp-contact-link">
+                        💬 +91 90254 78790
+                    </a>
+                    <a href="https://wa.me/919363063571" target="_blank" rel="noopener" class="whatsapp-contact-link">
+                        💬 +91 93630 63571
+                    </a>
+                </div>
             </div>
 
         </div>
 
-
-        <div class="footer-bottom">
-
-            <span>
-                © 2026 Tamilanda Crackers
-            </span>
-
-
-            <span>
-                LIGHT UP THE NIGHT ✨
-            </span>
-
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-inner">
+                <span>© 2026 Tamilanda Crackers. All rights reserved.</span>
+                <span>Diwali 2026 • Sivakasi Wholesale</span>
+            </div>
         </div>
 
     </footer>
