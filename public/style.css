@@ -3087,3 +3087,21 @@ body.modal-open {
   }
 
 }
+
+/* =========================================================
+   OVERLAY INITIAL STATE FIX
+   Cart & AI stay hidden until explicitly opened
+   ========================================================= */
+
+.cart-overlay:not(.open),
+.ai-overlay:not(.open) {
+  display: none !important;
+}
+
+.cart-overlay.open {
+  display: block !important;
+}
+
+.ai-overlay.open {
+  display: flex !important;
+}
