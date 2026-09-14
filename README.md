@@ -1,20 +1,61 @@
-# Tamilanda Crackers — ATOZ Diwali Website
+# 🎆 Tamilanda Crackers — Real AI
 
-A full static GitHub-ready website for Tamilanda Crackers. No framework is required; `index.html` works as the entry point and can be deployed directly to GitHub Pages.
+A premium Diwali crackers shopping website with a real AI shopping assistant.
 
-## Files
-- `index.html` — site shell
-- `style.css` — full black/gold luxury UI, responsive layout and animations
-- `app.js` — search, filter, sort, cart, WhatsApp checkout, Smart Suggest UI
-- `ai-engine.js` — local recommendation engine with audience/objective/budget scoring, category diversification and budget safety
-- `products.js` — 263 product catalogue with prices, MRP, pack, source category and product image URLs
-- `assets/logo.svg` — logo mark
+## ✨ Features
 
-## Smart Suggest
-Smart Suggest is implemented as a deterministic on-device recommendation engine, so it works offline/static without an AI API key. It uses the selected audience, objective, budget, price, category and product attributes to build a varied selection that never exceeds the entered budget.
+- 🤖 Real AI-powered cracker recommendations
+- 💬 Natural Tamil / Tanglish / English conversation
+- 💰 Budget-aware product selection
+- 🎯 AI adapts recommendations based on user preferences
+- 🔄 Users can modify an existing recommendation
+- 🛒 Shopping cart
+- 📱 WhatsApp ordering
+- 🔎 Product search
+- 🏷️ Category filtering
+- ↕️ Product sorting
+- 💸 MRP + offer pricing
+- 📦 263-product catalogue
+- 🌙 Premium black / gold Diwali design
+- 📱 Mobile responsive
 
-## GitHub Pages
-Upload the folder to a repository and enable GitHub Pages from the repository's Pages settings using the root folder.
+## 🤖 AI Assistant
 
-## WhatsApp
-Orders are sent to `+91 90254 78790` or `+91 93630 63571`.
+The Smart Suggest feature is not a fixed preset system.
+
+The AI can understand natural requests such as:
+
+- "Family ku 2000 budget"
+- "Colour neraya venum"
+- "Sound kammiya irukkanum"
+- "Kids ku suitable ah"
+- "More sky shots"
+- "Make it closer to 2k"
+- "Reduce sound"
+- "Change the sky shots"
+
+The AI uses the product catalogue and budget to create a recommendation dynamically.
+
+## 🏗️ Architecture
+
+```text
+Browser
+   │
+   ▼
+Frontend
+   │
+   │ POST /api/ai/suggest
+   ▼
+Node.js + Express
+   │
+   ▼
+OpenAI API
+   │
+   ▼
+AI Recommendation
+   │
+   ▼
+Validated Product Selection
+   │
+   ▼
+Cart / WhatsApp Order
