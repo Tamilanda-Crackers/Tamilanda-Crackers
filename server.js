@@ -1,22 +1,20 @@
-"use strict";
-
-require("dotenv").config();
-
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+require("dotenv").config();
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-
 const PUBLIC_DIR = path.join(__dirname, "public");
+const PRODUCTS_FILE = path.join(__dirname, "products.json");
 
-const PRODUCTS_FILE = path.join(
-    __dirname,
-    "products.json"
-);
+/* =========================================================
+   MIDDLEWARE
+   ========================================================= */
 
+app.use(express.json({ limit: "1mb" }));
+app.use(express.urlencoded({ extended: true }));
 
 /* =========================================================
    LOAD PRODUCTS
@@ -25,403 +23,184 @@ const PRODUCTS_FILE = path.join(
 let products = [];
 
 try {
+  const rawProducts = fs.readFileSync(PRODUCTS_FILE, "utf8");
+  products = JSON.parse(rawProducts);
 
-    if (fs.existsSync(PRODUCTS_FILE)) {
+  if (!Array.isArray(products)) {
+    throw new Error("products.json must contain an array.");
+  }
 
-        products =
-            JSON.parse(
-                fs.readFileSync(
-                    PRODUCTS_FILE,
-                    "utf8"
-                )
-            );
+  console.log(`Loaded ${products.length} products.`);
+} catch (error) {
+  console.error("Failed to load products.json:");
+  console.error(error);
 
-    }
-
-}
-catch (error) {
-
-    console.error(
-        "Unable to load products.json:",
-        error
-    );
-
-    products = [];
-
+  process.exit(1);
 }
 
-
-console.log(
-    `Loaded ${products.length} products.`
-);
-
-console.log(
-    "AI: Puter.js + DeepSeek"
-);
-
-
 /* =========================================================
-   EXPRESS CONFIG
+   AI INFO
    ========================================================= */
 
-app.disable("x-powered-by");
-
-app.use(
-    express.json({
-        limit: "1mb"
-    })
-);
-
-
-/* =========================================================
-   SECURITY / CACHE HEADERS
-   ========================================================= */
-
-app.use(
-    (req, res, next) => {
-
-        res.setHeader(
-            "X-Content-Type-Options",
-            "nosniff"
-        );
-
-        res.setHeader(
-            "X-Frame-Options",
-            "SAMEORIGIN"
-        );
-
-        res.setHeader(
-            "Referrer-Policy",
-            "strict-origin-when-cross-origin"
-        );
-
-        next();
-
-    }
-);
-
+console.log("AI: Puter.js + DeepSeek");
 
 /* =========================================================
    HEALTH CHECK
    ========================================================= */
 
-app.get(
-    "/api/health",
-    (req, res) => {
-
-        res.json({
-
-            ok: true,
-
-            service:
-                "Tamilanda Crackers",
-
-            ai:
-                "Puter.js + DeepSeek",
-
-            products:
-                products.length,
-
-            timestamp:
-                new Date().toISOString()
-
-        });
-
-    }
-);
-
+app.get("/api/health", (req, res) => {
+  res.json({
+    ok: true,
+    service: "Tamilanda Crackers",
+    products: products.length,
+    ai: "Puter.js + DeepSeek"
+  });
+});
 
 /* =========================================================
-   PRODUCT API
+   PRODUCTS API
    ========================================================= */
 
-app.get(
-    "/api/products",
-    (req, res) => {
-
-        res.json(products);
-
-    }
-);
-
+app.get("/api/products", (req, res) => {
+  res.json(products);
+});
 
 /* =========================================================
    ORDER VALIDATION
    ========================================================= */
 
-app.post(
-    "/api/order/validate",
-    (req, res) => {
+app.post("/api/order/validate", (req, res) => {
+  try {
+    const items = req.body && req.body.items;
 
-        try {
-
-            const body =
-                req.body || {};
-
-            const items =
-                Array.isArray(body.items)
-                    ? body.items
-                    : [];
-
-
-            if (!items.length) {
-
-                return res.status(400).json({
-
-                    ok: false,
-
-                    error:
-                        "Cart is empty."
-
-                });
-
-            }
-
-
-            const productMap =
-                new Map(
-                    products.map(
-                        product => [
-                            String(product.id),
-                            product
-                        ]
-                    )
-                );
-
-
-            const validatedItems = [];
-
-            let total = 0;
-
-
-            for (
-                const item of items
-            ) {
-
-                const product =
-                    productMap.get(
-                        String(item.id)
-                    );
-
-
-                if (!product) {
-
-                    return res.status(400).json({
-
-                        ok: false,
-
-                        error:
-                            `Invalid product ID: ${item.id}`
-
-                    });
-
-                }
-
-
-                const quantity =
-                    Math.max(
-                        1,
-                        Math.min(
-                            99,
-                            Math.floor(
-                                Number(
-                                    item.quantity
-                                ) || 0
-                            )
-                        )
-                    );
-
-
-                const lineTotal =
-                    Number(product.price || 0) *
-                    quantity;
-
-
-                total += lineTotal;
-
-
-                validatedItems.push({
-
-                    id:
-                        product.id,
-
-                    name:
-                        product.name,
-
-                    quantity,
-
-                    price:
-                        Number(
-                            product.price || 0
-                        ),
-
-                    lineTotal
-
-                });
-
-            }
-
-
-            return res.json({
-
-                ok: true,
-
-                items:
-                    validatedItems,
-
-                total
-
-            });
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Order validation error:",
-                error
-            );
-
-
-            return res.status(500).json({
-
-                ok: false,
-
-                error:
-                    "Unable to validate order."
-
-            });
-
-        }
-
+    if (!Array.isArray(items)) {
+      return res.status(400).json({
+        ok: false,
+        error: "Invalid order items."
+      });
     }
-);
 
+    let total = 0;
+    const validatedItems = [];
 
-/* =========================================================
-   STATIC WEBSITE
-   ========================================================= */
+    for (const item of items) {
+      const productId = Number(item.id);
+      const quantity = Number(item.quantity);
 
-app.use(
-    express.static(
-        PUBLIC_DIR,
-        {
-            extensions: [
-                "html"
-            ],
-
-            maxAge:
-                process.env.NODE_ENV ===
-                "production"
-                    ? "1h"
-                    : 0
-        }
-    )
-);
-
-
-/* =========================================================
-   SPA / WEBSITE FALLBACK
-   ========================================================= */
-
-app.get(
-    "*",
-    (req, res, next) => {
-
-        /*
-         * Never replace API 404 responses
-         * with index.html.
-         */
-
-        if (
-            req.path.startsWith(
-                "/api/"
-            )
-        ) {
-
-            return next();
-
-        }
-
-
-        res.sendFile(
-            path.join(
-                PUBLIC_DIR,
-                "index.html"
-            )
-        );
-
-    }
-);
-
-
-/* =========================================================
-   404 API
-   ========================================================= */
-
-app.use(
-    "/api",
-    (req, res) => {
-
-        res.status(404).json({
-
-            ok: false,
-
-            error:
-                "API endpoint not found."
-
+      if (!Number.isInteger(productId) || productId <= 0) {
+        return res.status(400).json({
+          ok: false,
+          error: "Invalid product ID."
         });
+      }
 
+      if (!Number.isInteger(quantity) || quantity <= 0) {
+        return res.status(400).json({
+          ok: false,
+          error: "Invalid quantity."
+        });
+      }
+
+      const product = products.find(
+        (p) => Number(p.id) === productId
+      );
+
+      if (!product) {
+        return res.status(400).json({
+          ok: false,
+          error: `Product ${productId} not found.`
+        });
+      }
+
+      const price = Number(product.price);
+
+      if (!Number.isFinite(price) || price < 0) {
+        return res.status(400).json({
+          ok: false,
+          error: `Invalid price for product ${productId}.`
+        });
+      }
+
+      const lineTotal = price * quantity;
+
+      total += lineTotal;
+
+      validatedItems.push({
+        id: product.id,
+        name: product.name,
+        quantity,
+        price,
+        lineTotal
+      });
     }
-);
 
+    res.json({
+      ok: true,
+      items: validatedItems,
+      total
+    });
+  } catch (error) {
+    console.error("Order validation error:", error);
+
+    res.status(500).json({
+      ok: false,
+      error: "Unable to validate order."
+    });
+  }
+});
+
+/* =========================================================
+   STATIC FRONTEND
+   ========================================================= */
+
+app.use(express.static(PUBLIC_DIR));
+
+/* =========================================================
+   FRONTEND FALLBACK
+   IMPORTANT:
+   Express 5 does NOT support app.get("*", ...)
+   ========================================================= */
+
+app.use((req, res, next) => {
+  if (req.path.startsWith("/api/")) {
+    return next();
+  }
+
+  res.sendFile(path.join(PUBLIC_DIR, "index.html"));
+});
+
+/* =========================================================
+   API 404
+   ========================================================= */
+
+app.use("/api", (req, res) => {
+  res.status(404).json({
+    ok: false,
+    error: "API endpoint not found."
+  });
+});
 
 /* =========================================================
    ERROR HANDLER
    ========================================================= */
 
-app.use(
-    (error, req, res, next) => {
+app.use((error, req, res, next) => {
+  console.error("Server error:", error);
 
-        console.error(
-            "Server error:",
-            error
-        );
+  if (res.headersSent) {
+    return next(error);
+  }
 
-
-        if (res.headersSent) {
-            return next(error);
-        }
-
-
-        res.status(500).json({
-
-            ok: false,
-
-            error:
-                "Internal server error."
-
-        });
-
-    }
-);
-
+  res.status(500).json({
+    ok: false,
+    error: "Internal server error."
+  });
+});
 
 /* =========================================================
    START SERVER
    ========================================================= */
 
-app.listen(
-    PORT,
-    () => {
-
-        console.log(
-            `Tamilanda Crackers running on port ${PORT}`
-        );
-
-        console.log(
-            `Public directory: ${PUBLIC_DIR}`
-        );
-
-    }
-);
+app.listen(PORT, () => {
+  console.log(`Tamilanda Crackers running on port ${PORT}`);
+});
