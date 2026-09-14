@@ -2,7 +2,7 @@
   "name": "tamilanda-crackers",
   "version": "1.0.0",
   "private": true,
-  "description": "Tamilanda Crackers - Diwali 2026 website",
+  "description": "Tamilanda Crackers - Diwali 2026 website with Gemini AI shopping assistant",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
