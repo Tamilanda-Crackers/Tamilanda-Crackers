@@ -9,9 +9,16 @@
   window.TAMILANDA_PRODUCTS = [];
   window.TAMILANDA_PRODUCTS_READY = false;
 
-  window.TAMILANDA_PRODUCTS_PROMISE = fetch("/products.json", {
+  /*
+   * products.json is stored at the server root.
+   * Load it through the server API.
+   */
+  window.TAMILANDA_PRODUCTS_PROMISE = fetch("/api/products", {
     method: "GET",
-    cache: "no-cache"
+    cache: "no-store",
+    headers: {
+      Accept: "application/json"
+    }
   })
     .then(function (response) {
       if (!response.ok) {
@@ -23,15 +30,14 @@
 
       return response.json();
     })
+
     .then(function (products) {
       if (!Array.isArray(products)) {
-        throw new Error("Product catalogue format is invalid.");
+        throw new Error(
+          "Product catalogue format is invalid."
+        );
       }
 
-      /*
-       * Basic client-side validation.
-       * The server remains the source of truth for AI recommendations.
-       */
       var validProducts = products.filter(function (product) {
         return (
           product &&
@@ -43,17 +49,30 @@
         );
       });
 
+      if (!validProducts.length) {
+        throw new Error(
+          "Product catalogue is empty."
+        );
+      }
+
       window.TAMILANDA_PRODUCTS = validProducts;
       window.TAMILANDA_PRODUCTS_READY = true;
 
       /*
-       * Backward compatibility:
-       * Existing frontend code can use PRODUCTS directly.
+       * Backward compatibility.
+       * Existing app.js code can use PRODUCTS.
        */
       window.PRODUCTS = validProducts;
 
+      console.info(
+        "Tamilanda product catalogue loaded:",
+        validProducts.length,
+        "products"
+      );
+
       return validProducts;
     })
+
     .catch(function (error) {
       console.error(
         "Tamilanda product catalogue failed to load:",
